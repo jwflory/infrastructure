@@ -17,6 +17,12 @@
         - href: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
           creates: "/etc/yum.repos.d/epel.repo"
 
+    - name: Ensure NTP (for time synchronization) is installed.
+      yum: name=ntp state=present
+
+    - name: Ensure NTP is running.
+      service: name=ntpd state=started enabled=yes
+
     - name: Install firewalld and fail2ban.
       yum: name={{ item }} state=present
       with_items:
@@ -32,6 +38,14 @@
     - name: Create user for jflory.
       user: name=jflory createhome=yes
 
+    - name: Make an SSH directory for jflory.
+      file:
+        path: /home/jflory/.ssh/
+        state: directory
+        owner: jflory
+        group: jflory
+        mode: 0700
+
     - name: Upload public key to SSH directory for jflory.
       copy: 
         src: "{{ item.src }}"
@@ -45,9 +59,6 @@
 
     - name: Install Mosh server.
       yum: name=mosh state=present
-
-    - name: Start and enable Mosh server.
-      service: name=mosh state=started enabled=yes
 
     - name: Set up firewalld rule for Mosh.
       firewalld: immediate=yes permanent=yes port=60597/udp state=enabled
