@@ -1,0 +1,59 @@
+---
+- hosts: gsoc
+
+  vars_files:
+    - ../vars/all.yml
+
+- name: "Download WordPress from wordpress.com."
+  get_url: url=https://wordpress.org/wordpress-{{ wp_version }}.tar.gz dest=/srv/wordpress-{{ wp_version }}.tar.gz sha256sum="{{ wp_sha256sum }}"
+
+- name: Extract WordPress to /opt/.
+  command: chdir=/opt/ tar xvf wordpress-{{ wp_version }}.tar.gz creates=/opt/wordpress
+
+- name: Add group "wordpress".
+  group: name=wordpress
+
+- name: Add user "wordpress".
+  user: name=wordpress group=wordpress home=/opt/wordpress/
+
+- name: Create WordPress MySQL database.
+  mysql_db: name={{ wp_db_name }} state=present
+
+- name: Create WordPress MySQL database user.
+  mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_db_name }}.*:ALL host='localhost' state=present
+
+- name: Copy WordPress config file to the server directory.
+  template: src=wp-config.php dest=/opt/wordpress/
+
+- name: Change ownership of WordPress installation.
+  file: path=/opt/wordpress/ owner=wordpress group=wordpress state=directory recurse=yes
+
+- name: Install SELinux toolset for defining policy.
+  yum: pkg=policycoreutils-python state=present
+
+- name: Set SELinux policy for the WordPress directory.
+  command: semanage fcontext -a -t httpd_sys_content_t "/opt/wordpress(/.*)?"
+  
+- name: Set SELinux policy for wp-config.php.
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress/wp-config\.php"
+
+- name: Set SELinux policy for wp-content directory.
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress/wp-content(/.*)?"
+
+- name: Set SELinux policy for the *.php files.
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress/.*\.php"
+
+- name: Set SELinux policy for the Upgrade directory.
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress/wp-content/upgrade(/.*)?"
+
+- name: Set SELinux policy for the Uploads directory.
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress/wp-content/uploads(/.*)?"
+
+- name: Set SELinux policy for the wp-includes php files.
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress/wp-includes/.*\.php"
+
+- name: Restore SELinux context on all files.
+  command: restorecon -Rv /opt/wordpress
+
+- name: Start php-fpm.
+  service: name=php-fpm state=started enabled=yes
