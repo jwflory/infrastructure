@@ -1,0 +1,26 @@
+---
+# Installation of a database for a WordPress site
+
+- name: "Install WP DB."
+  hosts: wordpress
+
+  vars:
+    - ansible_user: centos
+
+  tasks:
+    - name: "Create WordPress MySQL database."
+      mysql_db: name={{ wp_db_name }} state=present
+      tags:
+      - mysql
+      - wordpress
+
+    - name: "Create WordPress MySQL database user."
+      mysql_user: >
+        name={{ wp_db_user }}
+        password={{ wp_db_password }}
+        priv={{ wp_db_name }}.*:ALL
+        host='localhost'
+        state=present
+      tags:
+      - mysql
+      - wordpress
