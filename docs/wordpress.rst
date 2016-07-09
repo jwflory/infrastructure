@@ -16,8 +16,8 @@ Contents
 1. Background
 2. Overview
 3. Deployment
-3.1. MySQL/MariaDB databases
-3.2. Upgrades
+ a) MySQL/MariaDB databases
+ b) Upgrades
 4. Additional Reading/Resources
 
 Contact Information
