@@ -1,0 +1,55 @@
+---
+# Upgrading existing WordPress applications
+
+- name: "Upgrade WordPress on an existing host."
+  hosts: wordpress
+  become: yes
+
+  tasks:
+    - name: "Update all dependencies to latest version, if necessary."
+      yum: name={{ item }} state=latest
+      with_items:
+      - MySQL-python
+      - php
+      - php-mysql
+      - policycoreutils-python
+      tags:
+      - packages
+      - wordpress
+
+    - name: "Create folders for installation."
+      file:
+        path=/opt/wordpress-latest
+        state=directory
+        group=wordpress
+        recurse=true
+
+    - name: "Download and extract WordPress to /opt/."
+      unarchive:
+        src=https://wordpress.org/latest.zip
+        dest=/opt/wordpress-latest
+        copy=no
+        creates=/opt/wordpress-latest/wordpress
+        group=wordpress
+        owner=wordpress
+      tags:
+      - upgrade
+      - wordpress
+
+    - name: "Synchronize upstream update to WordPress directories."
+      synchronize: >
+        src=/opt/wordpress-latest/wordpress
+        dest=/opt/wordpress-{{ inventory_hostname }}/wordpress/
+
+    - name: "Change ownership of WordPress installation, in case it wasn't preserved."
+      file: >
+        path=/opt/wordpress-{{ inventory_hostname }}/wordpress/
+        owner=wordpress
+        group=wordpress
+        state=directory
+        recurse=yes
+      notify:
+      - service apache restart
+      tags:
+      - config
+      - wordpress
