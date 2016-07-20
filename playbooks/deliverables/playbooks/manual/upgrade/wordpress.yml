@@ -3,19 +3,6 @@
 
 - name: "Upgrade WordPress on an existing host."
   hosts: wordpress
-  become: yes
-
-  tasks:
-    - name: "Update all dependencies to latest version, if necessary."
-      yum: name={{ item }} state=latest
-      with_items:
-      - MySQL-python
-      - php
-      - php-mysql
-      - policycoreutils-python
-      tags:
-      - packages
-      - wordpress
 
     - name: "Create folders for installation."
       file:
