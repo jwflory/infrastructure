@@ -4,6 +4,7 @@
 - name: "Upgrade WordPress on an existing host."
   hosts: wordpress
 
+  tasks:
     - name: "Create folders for installation."
       file:
         path=/opt/wordpress-latest
@@ -12,7 +13,7 @@
         recurse=true
 
     - name: "Download and extract WordPress to /opt/."
-      unarchive:
+      unarchive: >
         src=https://wordpress.org/latest.zip
         dest=/opt/wordpress-latest
         copy=no
@@ -25,8 +26,8 @@
 
     - name: "Synchronize upstream update to WordPress directories."
       synchronize: >
-        src=/opt/wordpress-latest/wordpress
-        dest=/opt/wordpress-{{ inventory_hostname }}/wordpress/
+        src=/opt/wordpress-latest/wordpress/*
+        dest=/opt/wordpress-{{ inventory_hostname }}/wordpress
 
     - name: "Change ownership of WordPress installation, in case it wasn't preserved."
       file: >

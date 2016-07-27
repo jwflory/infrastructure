@@ -1,13 +1,9 @@
-# requires --extra-vars="target='host1:host2:group etc' package='somepackage'"
-#
-# This playbook searches through the yum history for the latest transaction
-# involving a particular package.  Once it finds it, it will undo that
-# transaction.
+# requires --extra-vars="target='host1:host2:group etc'"
 
 - name: Install a new WordPress instance in Fedora's infrastructure.
   hosts: "{{ target }}"
-  user: root
+  remote_user: root
   roles:
-    - role: wordpress
-
-  tasks: []
+    - apache
+    - mariadb
+    - wordpress
