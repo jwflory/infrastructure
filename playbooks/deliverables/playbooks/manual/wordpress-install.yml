@@ -1,9 +1,11 @@
+---
 # requires --extra-vars="target='host1:host2:group etc'"
 
-- name: Install a new WordPress instance in Fedora's infrastructure.
+- name: Install a new WordPress instance
   hosts: "{{ target }}"
-  remote_user: root
+  user: root
+
   roles:
     - apache
-    - mariadb
+    - mariadb_server
     - wordpress
