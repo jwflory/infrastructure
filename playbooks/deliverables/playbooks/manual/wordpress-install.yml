@@ -8,7 +8,8 @@
   roles:
     - apache
     - mariadb_server
-    - { role: wp_domain }
+    - wordpress
+    - { role: wordpress, wp_domain: "{{ domains }}" }
 
   handlers:
   - include: "{{ handlers }}/restart_services.yml"
