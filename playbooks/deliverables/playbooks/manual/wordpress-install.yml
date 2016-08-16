@@ -3,9 +3,12 @@
 
 - name: Install a new WordPress instance
   hosts: "{{ target }}"
-  user: root
+  remote_user: root
 
   roles:
     - apache
     - mariadb_server
     - wordpress
+
+  handlers:
+  - include: "{{ handlers }}/restart_services.yml"
