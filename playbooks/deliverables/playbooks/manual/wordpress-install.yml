@@ -1,5 +1,5 @@
 ---
-# requires --extra-vars="target='host1:host2:group etc'"
+# requires --extra-vars="target='host1:host2:group etc' wp_domain='example.com:example.net'"
 
 - name: Install a new WordPress instance
   hosts: "{{ target }}"
@@ -8,7 +8,7 @@
   roles:
     - apache
     - mariadb_server
-    - wordpress
+    - { role: wp_domain }
 
   handlers:
   - include: "{{ handlers }}/restart_services.yml"

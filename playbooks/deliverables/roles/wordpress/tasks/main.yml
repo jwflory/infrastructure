@@ -27,14 +27,14 @@
   user: >
     name=wordpress
     group=wordpress
-    home=/opt/wordpress-{{ inventory_hostname }}
+    home=/opt/wordpress-{{ wp_domain }}
   tags:
   - config
   - wordpress
 
 - name: "Create folders for installation."
   file:
-    path=/opt/wordpress-{{ inventory_hostname }}
+    path=/opt/wordpress-{{ wp_domain }}
     state=directory
     group=wordpress
     recurse=true
@@ -42,9 +42,9 @@
 - name: "Download and extract WordPress to /opt/."
   unarchive:
     src=https://wordpress.org/wordpress-{{ wp_version }}.tar.gz
-    dest=/opt/wordpress-{{ inventory_hostname }}
+    dest=/opt/wordpress-{{ wp_domain }}
     copy=no
-    creates=/opt/wordpress-{{ inventory_hostname }}/wordpress
+    creates=/opt/wordpress-{{ wp_domain }}/wordpress
     group=wordpress
     owner=wordpress
   tags:
@@ -54,7 +54,7 @@
 - name: "Copy WordPress config file to the server directory."
   template: >
     src=wp-config.php
-    dest=/opt/wordpress-{{ inventory_hostname }}/wordpress/
+    dest=/opt/wordpress-{{ wp_domain }}/wordpress/
   notify:
   - restart apache
   tags:
@@ -63,7 +63,7 @@
 
 - name: "Change ownership of WordPress installation."
   file: >
-    path=/opt/wordpress-{{ inventory_hostname }}/wordpress/
+    path=/opt/wordpress-{{ wp_domain }}/wordpress/
     owner=wordpress
     group=wordpress
     state=directory
@@ -73,49 +73,49 @@
   - wordpress
 
 - name: "Set SELinux policy for the WordPress directory."
-  command: semanage fcontext -a -t httpd_sys_content_t "/opt/wordpress-{{ inventory_hostname }}/wordpress(/.*)?"
+  command: semanage fcontext -a -t httpd_sys_content_t "/opt/wordpress-{{ wp_domain }}/wordpress(/.*)?"
   tags:
   - selinux
   - wordpress
   
 - name: "Set SELinux policy for wp-config.php."
-  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/wp-config\.php"
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ wp_domain }}/wordpress/wp-config\.php"
   tags:
   - selinux
   - wordpress
 
 - name: "Set SELinux policy for wp-content directory."
-  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/wp-content(/.*)?"
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ wp_domain }}/wordpress/wp-content(/.*)?"
   tags:
   - selinux
   - wordpress
 
 - name: "Set SELinux policy for the *.php files."
-  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/.*\.php"
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ wp_domain }}/wordpress/.*\.php"
   tags:
   - selinux
   - wordpress
 
 - name: "Set SELinux policy for the Upgrade directory."
-  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/wp-content/upgrade(/.*)?"
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ wp_domain }}/wordpress/wp-content/upgrade(/.*)?"
   tags:
   - selinux
   - wordpress
 
 - name: "Set SELinux policy for the Uploads directory."
-  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/wp-content/uploads(/.*)?"
+  command: semanage fcontext -a -t httpd_sys_rw_content_t "/opt/wordpress-{{ wp_domain }}/wordpress/wp-content/uploads(/.*)?"
   tags:
   - selinux
   - wordpress
 
 - name: "Set SELinux policy for the wp-includes php files."
-  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ inventory_hostname }}/wordpress/wp-includes/.*\.php"
+  command: semanage fcontext -a -t httpd_sys_script_exec_t "/opt/wordpress-{{ wp_domain }}/wordpress/wp-includes/.*\.php"
   tags:
   - selinux
   - wordpress
 
 - name: "Restore SELinux context on all files."
-  command: restorecon -Rv /opt/wordpress-{{ inventory_hostname }}/wordpress
+  command: restorecon -Rv /opt/wordpress-{{ wp_domain }}/wordpress
   tags:
   - selinux
   - wordpress
