@@ -44,7 +44,7 @@ proposal by jflory7_. The Ansible playbook(s) and other relevant assets were
 part of the original proposal_.
 
 For anything related to the management of the front-end of the WordPress sites,
-e.g. content / articles, that is the responsible of the team maintaining the
+e.g. content / articles, that is the responsibility of the team maintaining the
 publication. The Infrastructure team is only responsible for the technical
 aspects of managing the installations, as far as upgrades, backups, and other
 services. For the Magazine_, the point of contact for content is the Marketing_
