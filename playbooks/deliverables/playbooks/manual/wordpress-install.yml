@@ -12,4 +12,5 @@
     - { role: wordpress, wp_domain: "{{ domains }}" }
 
   handlers:
-  - include: "{{ handlers }}/restart_services.yml"
+  - include: "/home/jflory/Software/GSoC/ansible/handlers/restart_services.yml"
+    static: yes
