@@ -1,0 +1,21 @@
+---
+# Name of all tmux sessions running on server
+game_tmux_sessions:
+  - creative
+  - development
+  - lobby
+  - space
+  - survival
+  - rit-survival
+  - workflow
+
+web_tmux_sessions:
+  - proxy
+  - saikban
+  - workflow
+
+mc_servers:
+  - creative
+  - lobby
+  - space
+  - survival

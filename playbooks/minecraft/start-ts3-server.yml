@@ -1,0 +1,12 @@
+---
+- hosts: ccmc-web
+  remote_user: minecraft
+
+  tasks:
+    - name: "Create tmux sessions for TeamSpeak3."
+      command: tmux new -d -s teamspeak
+
+    - name: "Start TeamSpeak3 server in tmux session."
+      shell: >
+        tmux send-keys -t teamspeak "cd ~/servers/teamspeak3 && ./ts3server_minimal_runscript.sh" Enter
+      

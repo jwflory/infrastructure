@@ -1,0 +1,8 @@
+# Ansible inventory file for CrystalCraftMC infrastructure
+
+[ccmc-game]
+arguru.justinwflory.com:10401
+
+[ccmc-web]
+bryn.justinwflory.com
+
