@@ -1,7 +1,12 @@
 #!/bin/bash
-# A script to backup all servers using duply ()
+# A script to backup all servers using duply
+#
 
 echo "Beginning backups..."
+
+echo "Backing up global plugin directory..."
+duply plugindir backup
+echo "Success!"
 
 echo "Backing up survival... (this could take a while)"
 duply survival backup
