@@ -1,77 +1,61 @@
-#!/bin/sh
-# An auto-update script for Spigot
+#!/bin/bash
+# Script to automatically update PaperSpigot servers to the latest
+# version of PaperSpigot and optionally apply it to all servers.
+#
+# Important details to note:
+#  * Must have a .minecraftrc in home directory
+#     * ps_install_dir: Directory to install PaperSpigot
+#     * tmux_minecraft_all: Array of all tmux session names
+#  * Argument: "restart"
+#     * If passed, will restart all Minecraft servers to apply update
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
 
-SERVERDIR=/home/minecraft/servers
-BACKUPDIR=/home/minecraft/backups
-PROXY=/home/minecraft/servers/proxy
-LOBBY=/home/minecraft/servers/lobby
-SURVIVAL=/home/minecraft/servers/survival
-CREATIVE=/home/minecraft/servers/creative
-SPACE=/home/minecraft/servers/space
-CCB=/home/minecraft/servers/ccb
-DEVELOPMENT=/home/minecraft/servers/development
-RIT_PROXY=/home/minecraft/servers/rit-proxy
-RIT_SURVIVAL=/home/minecraft/servers/rit-survival
-RIT_CREATIVE=/home/minecraft/servers/rit-creative
+# Source the local config file
+source ~/.minecraftrc
 
-echo "Beginning auto-update!"
+# Download the newest version of PaperSpigot
+wget -O $ps_install_dir/paperspigot-tmp.jar https://ci.destroystokyo.com/job/PaperSpigot/lastSuccessfulBuild/artifact/paperclip.jar
 
-cd /home/minecraft/buildtools/
-java -jar BuildTools.jar
-cd paperspigot/
-java -jar PaperTools.jar
-cd /home/minecraft/
-cp buildtools/spigot-*.jar servers/GLOBAL/spigot-update.jar
-rm buildtools/spigot-*.jar
-cp buildtools/paperspigot/paperspigot-*.jar servers/GLOBAL/paperspigot-update.jar
-rm buildtools/paperspigot/paperspigot-*.jar
+# See if a older backup JAR exists; if so, delete it
+if [ -f $ps_install_dir/paperspigot-last.jar ]; then
+    rm $ps_install_dir/paperspigot-last.jar
+fi
 
-tmux send-keys -t proxy "alert &cServer update is ready to be applied. The network will restart in 30 seconds!" Enter
-tmux send-keys -t rit-proxy "alert &cServer update is ready to be applied. The network will restart in 30 seconds!" Enter
+# Rename the current JAR to a different name (as a backup)
+if [ -f $ps_install_dir/paperspigot.jar ]; then
+    mv $ps_install_dir/paperspigot.jar $ps_install_dir/paperspigot-last.jar
+fi
 
-sleep 30s
+# Drop in the new version of PaperSpigot
+mv $ps_install_dir/paperspigot-tmp.jar $ps_install_dir/paperspigot.jar
 
-echo "Executing save-alls on the servers..."
-tmux send-keys -t lobby "save-all" Enter
-tmux send-keys -t survival "save-all" Enter
-tmux send-keys -t creative "save-all" Enter
-tmux send-keys -t space "save-all" Enter
-tmux send-keys -t ccb "save-all" Enter
-tmux send-keys -t development "save-all" Enter
-tmux send-keys -t rit-survival "save-all" Enter
-tmux send-keys -t rit-creative "save-all" Enter
+# If "restart" argument passed, restart all servers after updating
+if [ "$1" = "restart" ]; then
 
-sleep 2s
+    # Send out quick update alert
+    for i in "${tmux_minecraft_all[@]}"; do
+        tmux send-keys -t $i "bc &6Server update is ready to be applied! &cServer is restarting in 30 seconds..." Enter
+    done
+    sleep 30s
 
-echo "Stopping servers..."
-tmux send-keys -t proxy "alert &cServer is restarting..." Enter
-tmux send-keys -t rit-proxy "alert &cServer is restarting..." Enter
+    # Save all data on the server just in case
+    for i in "${tmux_minecraft_all[@]}"; do
+        tmux send-keys -t $i "save-all" Enter
+    done
 
-tmux send-keys -t lobby "stop" Enter
-tmux send-keys -t survival "stop" Enter
-tmux send-keys -t creative "stop" Enter
-tmux send-keys -t space "stop" Enter
-tmux send-keys -t ccb "stop" Enter
-tmux send-keys -t development "stop" Enter
-tmux send-keys -t rit-survival "stop" Enter
-tmux send-keys -t rit-creative "stop" Enter
+    # Stop all Minecraft servers
+    for i in "${tmux_minecraft_all[@]}"; do
+        tmux send-keys -t $i "stop" Enter
+    done
+    sleep 20s
 
-sleep 10s
+    # Restart all the Minecraft servers
+    for i in "${tmux_minecraft_all[@]}"; do
+        tmux send-keys -t $i "./start.sh" Enter
+    done
 
-echo "Moving those JARs around!"
-rm /home/minecraft/servers/GLOBAL/spigot.jar
-rm /home/minecraft/servers/GLOBAL/paperspigot.jar
-mv /home/minecraft/servers/GLOBAL/spigot-update.jar /home/minecraft/servers/GLOBAL/spigot.jar
-mv /home/minecraft/servers/GLOBAL/paperspigot-update.jar /home/minecraft/servers/GLOBAL/paperspigot.jar
-
-echo "Let's bring these suckers back to life."
-tmux send-keys -t lobby "./start.sh" Enter
-tmux send-keys -t survival "./start.sh" Enter
-tmux send-keys -t creative "./start.sh" Enter
-tmux send-keys -t space "./start.sh" Enter
-tmux send-keys -t ccb "./start.sh" Enter
-tmux send-keys -t development "./start.sh" Enter
-tmux send-keys -t rit-survival "./start.sh" Enter
-tmux send-keys -t rit-creative "./start.sh" Enter
-
-echo "Auto-update complete!"
+fi
