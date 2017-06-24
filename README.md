@@ -1,12 +1,12 @@
-ansible
-=======
+infrastructure
+==============
 
-[Ansible](https://www.ansible.com/) playbooks, roles, and scripts used to manage different services or tasks in my personal infrastructure (inc. [CrystalCraftMC](https://crystalcraftmc.com))
+Various scripts, [Ansible](https://www.ansible.com/) playbooks / roles, and other utilities for managing my personal infrastructure (including [CrystalCraftMC](https://crystalcraftmc.com))
 
 
 ## About
 
-This repository contains all Ansible-related files and playbooks created by Justin W. Flory. The resources in this repository are for my personal infrastructure, learning purposes, or testing. These resources aim to help provide an example of an open infrastructure and may change frequently.
+This repository contains all of the sysadmin goodness that's used to manage my infrastructure, like scripts, Ansible-related files and playbooks, and other fun things. The resources in this repository are for my personal infrastructure, learning purposes, or testing. These resources aim to help provide an example of an open infrastructure.
 
 
 ## Contributing
@@ -17,7 +17,7 @@ Contributions are welcome in the form of pull requests. As of now, there are no 
 2. Why you are making them
 3. The overall effect of your changes
 
-Stick to answering these questions and I'll likely accept your pull request if I agree with your logic.
+Stick to answering these questions and I'll likely accept your pull request if your change makes sense.
 
 
 ## Legal
