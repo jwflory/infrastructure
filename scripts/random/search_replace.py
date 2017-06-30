@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 #
-# Simple program to search for a string in a file and replace it with a new
-# string. The original use case for this script was when the Minecraft server
-# changed worlds. This meant introducing multiple worlds with strings like
-# 'world' and now 'world_new' into thousands of player data files. This script
-# solves this problem by searching and replacing all the strings to make them
-# consistent.
+# Simple program to search for a string in a file and replace it with
+# a new string. The original use case for this script was when the
+# Minecraft server changed worlds. This meant introducing multiple
+# worlds with strings like 'world' and now 'world_new' into thousands
+# of player data files. This script solves this problem by searching
+# and replacing all the strings to make them consistent.
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -13,7 +13,7 @@
 #
 __author__ = 'Justin W. Flory'
 
-import argparse, fileinput
+import argparse, fileinput, os, shutil
 
 def searchreplace():
     """
@@ -44,6 +44,13 @@ def searchreplace():
     with fileinput.FileInput(player_file, inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace(word, new_word), end='')
+
+    # Move backup files to a new directory
+    if not os.path.isdir('./backups'):
+        os.mkdir('./backups')
+    for f in os.listdir('.'):
+        if f.endswith('.bak'):
+            shutil.move(f, './backups')
 
 if __name__ == "__main__":
    searchreplace()
