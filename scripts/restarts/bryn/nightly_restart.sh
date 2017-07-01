@@ -24,7 +24,7 @@ sleep 50s
 tmux send-keys -t bungeecord "alert &cServer is restarting..." Enter
 sleep 2s
 
-tmux send-keys -t bungeecord "end" Enter
+tmux send-keys -t bungeecord "end " Enter
 sleep 20s
 
 tmux send-keys -t bungeecord "./start.sh" Enter
