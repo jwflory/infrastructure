@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: guestbook-nanny
+  namespace: default
+  labels:
+    k8s-app: guestbook
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: backend
+        kubernetes.io/cluster-service: "true"
+    spec:
+      containers:
+        - image: gcr.io/google_containers/addon-resizer:1.0
+          imagePullPolicy: Always
+          name: guestbook-nanny
+          resources:
+            limits:
+              cpu: 300m
+              memory: 200Mi
+            requests:
+              cpu: 300m
+              memory: 200Mi
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          command:
+            - /pod_nanny
+            - --cpu=300m
+            - --extra-cpu=20m
+            - --memory=200Mi
+            - --extra-memory=10Mi
+            - --threshold=5
+            - --deployment=frontend
+            - --container=php-redis
