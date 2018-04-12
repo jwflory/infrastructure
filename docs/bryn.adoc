@@ -1,0 +1,17 @@
+= Configuration notes: bryn.justinwflory.com
+
+Configuration or changelog notes for Bryn.
+
+
+== Firewall
+
+* *Services*:
+** SSH (22)
+** HTTP (80)
+** DNS (52)
+** HTTPS (443)
+** MySQL
+* *Ports*:
+** `8086/tcp`: InfluxDB
+** `25565/{tcp/udp}`: Minecraft
+** `60597/udp`: Mosh
