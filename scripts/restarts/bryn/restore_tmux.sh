@@ -11,12 +11,10 @@
 tmux new-session -d -s bungeecord
 tmux new-session -d -s saikban
 tmux new-session -d -s supybot
-tmux new-session -d -s teamspeak
 tmux new-session -d -s workflow
 
 # Restart the processes
 tmux send-keys -t bungeecord "cd ~/servers/bungeecord && ./start.sh" Enter
 tmux send-keys -t saikban "cd ~/servers/saikban-web && ./start.sh" Enter
 tmux send-keys -t supybot "supybot ~/limnoria/fanshawe/Fanshawe.conf" Enter
-tmux send-keys -t teamspeak "cd ~/servers/teamspeak3 && ./ts3server_minimal_runscript.sh" Enter
 tmux send-keys -t workflow "echo Hello there! And welcome back!" Enter
