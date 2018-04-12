@@ -1,6 +1,0 @@
----
-- hosts: ccmc-game
-  remote_user: minecraft
-  
-  vars_files:
-    - vars.yml
