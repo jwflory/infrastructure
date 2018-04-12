@@ -1,0 +1,3 @@
+[submodule "roles/telegraf"]
+	path = roles/telegraf
+	url = https://github.com/dj-wasabi/ansible-telegraf.git
