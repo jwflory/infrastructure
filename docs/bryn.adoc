@@ -13,7 +13,6 @@ Configuration or changelog notes for Bryn.
 ** MySQL
 * *Ports*:
 ** `8086/tcp`: InfluxDB
-** `25565/{tcp/udp}`: Minecraft
 ** `60597/udp`: Mosh
 
 
