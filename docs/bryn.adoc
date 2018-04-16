@@ -15,3 +15,9 @@ Configuration or changelog notes for Bryn.
 ** `8086/tcp`: InfluxDB
 ** `25565/{tcp/udp}`: Minecraft
 ** `60597/udp`: Mosh
+
+
+== XenForo
+
+* `sitemaps/` and `temp/` must have 0777 permissions…
+** `temp/` is for the image proxy
