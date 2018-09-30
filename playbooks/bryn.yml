@@ -1,0 +1,11 @@
+---
+- name: synchronize bryn
+  hosts: bryn
+  become: yes
+
+  roles:
+    - role: ../roles/common-centos/7
+      git_conf_dir: /home/jflory/git/conf
+      target_user: jflory
+      user_home_dir: /home/jflory
+    - ../roles/lemp
