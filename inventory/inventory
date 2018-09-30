@@ -1,28 +1,24 @@
-# Ansible inventory file for jflory infrastructure
-
-[arguru]
-arguru.justinwflory.com
-
-[bryn]
 bryn.justinwflory.com
-
-[cortana]
 cortana.justinwflory.com
-
-[derezzed]
 derezzed.justinwflory.com
-
-[estrella]
 estrella.justinwflory.com
-
-[fiction]
 fiction.justinwflory.com
+grantgreen.justinwflory.com
 
 [prod]
 bryn
 cortana
 fiction
+grantgreen
 
 [dev]
 derezzed
 estrella
+
+[centos7]
+bryn
+cortana
+derezzed
+estrella
+fiction
+grantgreen
