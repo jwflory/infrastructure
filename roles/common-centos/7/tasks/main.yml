@@ -50,6 +50,11 @@
       - python34-setuptools
       - tmux-powerline
 
+- name: enable SELinux
+  selinux:
+    policy: targeted
+    state: enforcing
+
 - name: start and enable firewalld
   service:
     name: firewalld
