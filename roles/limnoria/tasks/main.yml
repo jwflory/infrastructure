@@ -5,11 +5,13 @@
     name: https://centos7.iuscommunity.org/ius-release.rpm
 
 - name: install Python 3.6 from IUS
+  # python36u-lxml: needed for DuckDuckGo plugin
   package:
     state: latest
     name:
       - python36u
       - python36u-pip
+      - python36u-lxml
 
 - name: create group for IRC bot admins
   group:
