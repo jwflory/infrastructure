@@ -1,2 +1,4 @@
 **/.vagrant
 *.retry
+
+playbooks/vagrant-test.yml
