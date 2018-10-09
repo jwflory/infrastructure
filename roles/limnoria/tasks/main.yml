@@ -43,11 +43,16 @@
   with_items:
     - limnoria-fanshawe
 
-- name: install limnoria
+- name: install limnoria and other dependencies
   pip:
     executable: pip3.6
     state: latest
-    name: limnoria
+    name:
+      - BeautifulSoup
+      - httpserver
+      - limnoria
+      - request
+      - simplejson
 
 # Need to figure out how to use Ansible secrets first before this is possible
 # - name: copy limnoria config (Fanshawe)
