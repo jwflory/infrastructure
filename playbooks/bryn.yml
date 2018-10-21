@@ -5,4 +5,7 @@
 
   roles:
     - common-centos/7
-    - limnoria
+    - firewalld
+    - sshd
+    - yum-cron
+    # - limnoria

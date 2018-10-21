@@ -1,7 +1,0 @@
----
-- name: synchronize all CentOS 7.x hosts
-  hosts: centos7
-  become: yes
-
-  roles:
-    - common-centos/7

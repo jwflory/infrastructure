@@ -1,0 +1,8 @@
+---
+- import_playbook: bryn.yml
+- import_playbook: cortana.yml
+- import_playbook: derezzed.yml
+- import_playbook: estrella.yml
+- import_playbook: fiction.yml
+- import_playbook: grantgreen.yml
+- import_playbook: horizon.yml

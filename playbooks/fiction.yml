@@ -5,3 +5,6 @@
 
   roles:
     - common-centos/7
+    - firewalld
+    - sshd
+    - yum-cron
