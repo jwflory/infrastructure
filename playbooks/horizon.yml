@@ -1,0 +1,7 @@
+---
+- name: synchronize horizon
+  hosts: horizon
+  become: yes
+
+  roles:
+    - common-centos/7
