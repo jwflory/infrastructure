@@ -16,18 +16,12 @@
     state: latest
     name:
       - https://repos.influxdata.com/centos/7Server/x86_64/stable/telegraf-1.8.0-1.x86_64.rpm
+      - certbot
       - duply
       - git
       - htop
-      - jq
-      - ntp
       - python36u
       - python36u-pip
-      - smartmontools
-      - strace
-      - tmux
-      - vim
-      - which
 
 - name: enable SELinux
   selinux:

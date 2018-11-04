@@ -6,14 +6,17 @@ fiction.justinwflory.com
 grantgreen.justinwflory.com
 horizon.justinwflory.com
 
-[prod]
+[dev]
+127.0.0.1 ansible_connection=local
+
+[production]
 bryn
 cortana
 fiction
 grantgreen
 horizon
 
-[dev]
+[staging]
 derezzed
 estrella
 
