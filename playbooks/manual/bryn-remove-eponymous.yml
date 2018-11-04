@@ -1,0 +1,20 @@
+---
+- name: remove and clean up bryn.justinwflory.com from bryn
+  hosts: bryn
+  become: yes
+
+  tasks:
+    - name: remove server block root directory
+      file:
+        state: absent
+        path: "/var/www/bryn.justinwflory.com/"
+
+    - name: remove unused TLS certificates
+      file:
+        state: absent
+        path: "/etc/pki/tls/certs/bryn_justinwflory_com/"
+
+    - name: remove nginx config
+      file:
+        state: absent
+        path: "/etc/nginx/conf.d/bryn.justinwflory.com.conf"
