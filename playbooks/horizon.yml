@@ -8,3 +8,4 @@
     - firewalld
     - sshd
     - yum-cron
+    - sites/mirror.justinwflory.com
