@@ -1,0 +1,20 @@
+---
+- name: remove and clean up i.jwf.io from bryn
+  hosts: bryn
+  become: yes
+
+  tasks:
+    - name: remove server block root directory
+      file:
+        state: absent
+        path: "/var/www/i.jwf.io/"
+
+    - name: remove unused TLS certificates
+      file:
+        state: absent
+        path: "/etc/pki/tls/certs/i_jwf_io/"
+
+    - name: remove nginx config
+      file:
+        state: absent
+        path: "/etc/nginx/conf.d/i.jwf.io.conf"
