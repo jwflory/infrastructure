@@ -55,14 +55,6 @@
     groups: www-admin
     name: "{{ target_user }}"
 
-- name: create directory for SSL/TLS certificates
-  file:
-    state: directory
-    path: "/etc/pki/tls/certs/private/"
-    mode: 0750
-    seuser: system_u
-    setype: cert_t
-
 - name: create root web directory (/var/www/)
   file:
     state: directory
