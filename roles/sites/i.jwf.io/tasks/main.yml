@@ -46,7 +46,7 @@
 - name: nginx - copy i.jwf.io.conf
   copy:
     src: i.jwf.io.conf
-    dest: "/etc/nginx/conf.d/i.jwf.io.conf.conf"
+    dest: "/etc/nginx/conf.d/i.jwf.io.conf"
     mode: 0644
   notify: restart nginx
 

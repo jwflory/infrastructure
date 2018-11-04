@@ -51,3 +51,13 @@
     dest: "/etc/nginx/conf.d/mirror.justinwflory.com.conf"
     mode: 0644
   notify: restart nginx
+
+- name: create public directory in mirror.justinwflory.com root directory
+  file:
+    state: directory
+    path: "/var/www/mirror.justinwflory.com/html/pub/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
