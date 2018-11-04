@@ -1,0 +1,20 @@
+---
+- name: remove and clean up mirror.justinwflory.com from bryn
+  hosts: bryn
+  become: yes
+
+  tasks:
+    - name: remove server block root directory
+      file:
+        state: absent
+        path: "/var/www/mirror.justinwflory.com/"
+
+    - name: remove unused TLS certificates
+      file:
+        state: absent
+        path: "/etc/pki/tls/certs/private/"
+
+    - name: remove nginx config
+      file:
+        state: absent
+        path: "/etc/nginx/conf.d/mirror.justinwflory.com.conf"
