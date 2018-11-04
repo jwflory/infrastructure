@@ -6,6 +6,7 @@
   roles:
     - common-centos/7
     - firewalld
+    - nginx
     - sshd
     - yum-cron
     - sites/mirror.justinwflory.com
