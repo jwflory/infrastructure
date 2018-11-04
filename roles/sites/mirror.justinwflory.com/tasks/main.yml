@@ -2,10 +2,6 @@
 # CAVEAT: This role requires LetsEncrypt SSL certs to already be in place.
 # For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
 
-- name: run base website role
-  include_role:
-    name: sites/base
-
 - name: create server block root directory
   file:
     state: directory
