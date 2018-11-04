@@ -43,9 +43,10 @@
 
 - name: create system user for web development permissions
   user:
+    comment: "system user for managing website deployments - do not use"
     create_home: no
     group: www-admin
-    home: "/var/www/"
+    home: "/var/www"
     name: www-admin
     system: yes
 
