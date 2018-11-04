@@ -1,0 +1,61 @@
+---
+# CAVEAT: This role requires LetsEncrypt SSL certs to already be in place.
+# For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
+
+- name: create server block root directory
+  file:
+    state: directory
+    path: "/var/www/i.jwf.io/"
+    mode: 0755
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create html directory
+  file:
+    state: directory
+    path: "/var/www/i.jwf.io/html/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create logs directory
+  file:
+    state: directory
+    path: "/var/www/i.jwf.io/logs/"
+    mode: 0755
+    group: nginx
+    owner: nginx
+    seuser: system_u
+    setype: httpd_log_t
+
+- name: copy index.html and favicon.ico
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/i.jwf.io/html/{{ item }}"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+  with_items:
+    - index.html
+    - favicon.ico
+
+- name: nginx - copy i.jwf.io.conf
+  copy:
+    src: i.jwf.io.conf
+    dest: "/etc/nginx/conf.d/i.jwf.io.conf.conf"
+    mode: 0644
+  notify: restart nginx
+
+- name: create screenshot directory in i.jwf.io root directory
+  file:
+    state: directory
+    path: "/var/www/i.jwf.io/html/u/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
