@@ -19,15 +19,8 @@
       - duply
       - git
       - htop
-      - jq
-      - ntp
       - python36u
       - python36u-pip
-      - smartmontools
-      - strace
-      - tmux
-      - vim
-      - which
 
 - name: enable SELinux
   selinux:
