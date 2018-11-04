@@ -9,5 +9,6 @@
     - nginx
     - sshd
     - yum-cron
+    - sites/horizon.justinwflory.com
     - sites/i.jwf.io
     - sites/mirror.justinwflory.com

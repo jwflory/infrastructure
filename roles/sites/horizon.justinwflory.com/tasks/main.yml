@@ -1,0 +1,51 @@
+---
+# CAVEAT: This role requires LetsEncrypt SSL certs to already be in place.
+# For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
+
+- name: create server block root directory
+  file:
+    state: directory
+    path: "/var/www/horizon.justinwflory.com/"
+    mode: 0755
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create html directory
+  file:
+    state: directory
+    path: "/var/www/horizon.justinwflory.com/html/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create logs directory
+  file:
+    state: directory
+    path: "/var/www/horizon.justinwflory.com/logs/"
+    mode: 0755
+    group: nginx
+    owner: nginx
+    seuser: system_u
+    setype: httpd_log_t
+
+- name: copy index.html and favicon.ico
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/horizon.justinwflory.com/html/{{ item }}"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+  with_items:
+    - index.html
+    - favicon.ico
+
+- name: nginx - copy horizon.justinwflory.com.conf
+  copy:
+    src: horizon.justinwflory.com.conf
+    dest: "/etc/nginx/conf.d/horizon.justinwflory.com.conf"
+    mode: 0644
+  notify: restart nginx
