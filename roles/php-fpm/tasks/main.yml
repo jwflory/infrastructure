@@ -1,0 +1,56 @@
+---
+- name: install IUS repositories
+  package:
+    state: present
+    name:
+      - epel-release
+      - https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install PHP 7.2
+  package:
+    state: present
+    name:
+      - php72u-common
+      - php72u-dba
+      - php72u-fpm
+      - php72u-gd
+      - php72u-json
+      - php72u-mbstring
+      - php72u-mysqlnd
+      - php72u-xml
+
+- name: php - copy php.ini
+  copy:
+    src: php.ini
+    dest: "/etc/php.ini"
+    mode: 0644
+    seuser: system_u
+
+- name: php-fpm - copy php-fpm.conf
+  copy:
+    src: php-fpm.conf
+    dest: "/etc/php-fpm.conf"
+    mode: 0644
+    seuser: system_u
+
+- name: php-fpm - copy www.conf
+  copy:
+    src: www.conf
+    dest: "/etc/php-fpm.d/www.conf"
+    mode: 0644
+    seuser: system_u
+  notify: restart php-fpm
+
+- name: nginx - copy nginx-php-fpm.conf
+  copy:
+    src: nginx-php-fpm.conf
+    dest: "/etc/nginx/conf.d/php-fpm.conf"
+    mode: 0644
+    seuser: system_u
+  notify: restart nginx
+
+- name: start/enable php-fpm service
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
