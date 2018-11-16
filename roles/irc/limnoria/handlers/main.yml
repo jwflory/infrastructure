@@ -1,0 +1,6 @@
+---
+- name: restart limnoria-fanshawe
+  service:
+    name: limnoria-fanshawe
+    state: restarted
+    enabled: yes

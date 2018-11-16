@@ -4,7 +4,7 @@
     state: present
     name: epel-release
 
-- name: create root directory for IRC bots
+- name: create root directory for limnoria bots
   file:
     state: directory
     path: "/usr/lib64/limnoria"
@@ -43,11 +43,5 @@
     setype: systemd_unit_file_t
   with_items:
     - limnoria-fanshawe
-
-- name: restart/enable systemd services
-  service:
-    name: "{{ item }}"
-    state: restarted
-    enabled: yes
-  with_items:
-    - limnoria-fanshawe
+  notify:
+    - restart limnoria-fanshawe
