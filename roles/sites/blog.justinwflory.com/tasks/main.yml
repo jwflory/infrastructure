@@ -1,0 +1,63 @@
+---
+# CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
+# For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
+
+- name: (hack) erase conflicting mariadb-libs package
+  package:
+    state: absent
+    name: mariadb-libs
+
+- name: install MariaDB
+  package:
+    state: present
+    name:
+      - mariadb101u-server
+
+- name: create server block root directory
+  file:
+    state: directory
+    path: "/var/www/blog.justinwflory.com/"
+    mode: 0755
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create html directory
+  file:
+    state: directory
+    path: "/var/www/blog.justinwflory.com/html/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create logs directory
+  file:
+    state: directory
+    path: "/var/www/blog.justinwflory.com/logs/"
+    mode: 0755
+    group: nginx
+    owner: nginx
+    seuser: system_u
+    setype: httpd_log_t
+
+- name: copy favicon.ico
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/blog.justinwflory.com/html/{{ item }}"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+  with_items:
+    - favicon.ico
+
+- name: nginx - copy blog.justinwflory.com.conf
+  copy:
+    src: blog.justinwflory.com.conf
+    dest: "/etc/nginx/conf.d/blog.justinwflory.com.conf"
+    mode: 0644
+  notify:
+    - restart php-fpm
+    - restart nginx
