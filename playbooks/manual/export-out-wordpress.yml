@@ -1,0 +1,66 @@
+---
+- name: bryn - export all data for single WordPress installation
+  hosts: bryn
+  become: yes
+
+  vars:
+    mysql_db_name: wordpress_blog
+    mysql_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          64306433653132343335623831616161633636373132326561376566643935313038383463323166
+          6364396365363035636163383766363137633135386338360a353332633732616636653630666534
+          33646432363865306261633237643166626166616666623634323431353164633039306337363932
+          3765353739656530630a376639656666383263333334306230653166323939393635323165326163
+          33636439383463626162633961373635663735656439373763663764336236316433633233346431
+          3264636539313639326431313263653035303136633033643239
+    mysql_user: wordpress
+    site_dir: "/var/www/{{ site_fqdn }}"
+    site_fqdn: blog.justinwflory.com
+    target_user: jflory
+    user_home_dir: "/home/jflory"
+
+  tasks:
+    - name: install required libraries
+      package:
+        state: present
+        name:
+          - python2-PyMySQL
+          - python-backports-lzma
+
+    - name: (hack) create file for archive to write to successfully
+      file:
+        path: "/tmp/{{ site_fqdn }}-www-content.tar.xz"
+        state: touch
+
+    - name: archive existing site content, save to target user home directory
+      archive:
+        path: "{{ site_dir }}"
+        dest: "/tmp/{{ site_fqdn }}-www-content.tar.xz"
+        format: xz
+
+    - name: export and compress MySQL database, save to target user home directory
+      mysql_db:
+        name: "{{ mysql_db_name }}"
+        state: dump
+        target: "/tmp/{{ site_fqdn }}-db.sql"
+        login_user: "{{ mysql_user }}"
+        login_password: "{{ mysql_password }}"
+
+    - name: compress dumped database archive
+      archive:
+        path: "/tmp/{{ site_fqdn }}-db.sql"
+        dest: "/tmp/{{ site_fqdn }}-db.sql.xz"
+        format: xz
+        remove: yes
+
+    - name: zip everything together for convenience
+      archive:
+        path:
+          - "/tmp/{{ site_fqdn }}-www-content.tar.xz"
+          - "/tmp/{{ site_fqdn }}-db.sql.xz"
+        dest: "{{ user_home_dir }}/{{ site_fqdn }}.zip"
+        format: zip
+        remove: yes
+        owner: "{{ target_user }}"
+        group: "{{ target_user }}"
+        seuser: system_u
