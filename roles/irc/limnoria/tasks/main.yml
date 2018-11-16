@@ -1,75 +1,53 @@
 ---
-- name: install ius-release
+- name: install epel-release
   package:
     state: present
-    name: https://centos7.iuscommunity.org/ius-release.rpm
-
-- name: install/upgrade python36u (from IUS)
-  # python36u-lxml: needed for DuckDuckGo plugin
-  package:
-    state: latest
-    name:
-      - python36u
-      - python36u-lxml
-      - python36u-pip
-      - python36u-setuptools
-
-- name: create group for IRC bot administration
-  group: name=irc-bot-admin
-
-- name: create system user for IRC bot administration
-  user:
-    comment: "system user for managing IRC bots - do not use"
-    create_home: no
-    group: irc-bot-admin
-    home: "/opt/irc-bots"
-    name: irc-bot-admin
-    system: yes
-
-- name: add target user to IRC bot administration group
-  user:
-    append: yes
-    groups: irc-bot-admin
-    name: "{{ target_user }}"
+    name: epel-release
 
 - name: create root directory for IRC bots
   file:
     state: directory
-    path: "/opt/irc-bots"
-    mode: 0775
-    group: irc-bot-admin
-    owner: irc-bot-admin
+    path: "/usr/lib64/limnoria"
+    mode: 0755
     seuser: system_u
 
 - name: create directory for each bot
   file:
     state: directory
-    path: "/opt/irc-bots/{{ item }}"
-    mode: 0775
-    group: irc-bot-admin
-    owner: irc-bot-admin
+    path: "/usr/lib64/limnoria/{{ item }}"
+    mode: 0755
     seuser: system_u
   with_items:
     - limnoria-fanshawe
 
-- name: install limnoria and other dependencies
-  become_user: "{{ target_user }}"
-  pip:
-    executable: pip3.6
+- name: install/upgrade limnoria
+  package:
     state: latest
-    extra_args: "--user"
-    name:
-      - beautifulsoup4
-      - httpserver
-      - limnoria
-      - request
-      - simplejson
+    name: limnoria
 
-- name: copy limnoria config (Fanshawe)
+- name: copy limnoria configs
   template:
-    src: "limnoria-fanshawe.conf"
-    dest: "/opt/irc-bots/limnoria-fanshawe/limnoria-fanshawe.conf"
-    mode: 0664
-    group: irc-bot-admin
-    owner: irc-bot-admin
+    src: "{{ item }}.conf"
+    dest: "/usr/lib64/limnoria/{{ item }}/{{ item }}.conf"
+    mode: 0660
     seuser: system_u
+  with_items:
+    - limnoria-fanshawe
+
+- name: copy systemd service files
+  template:
+    src: "{{ item }}.service"
+    dest: "/usr/lib/systemd/system/{{ item }}.service"
+    mode: 0664
+    seuser: system_u
+    setype: systemd_unit_file_t
+  with_items:
+    - limnoria-fanshawe
+
+- name: restart/enable systemd services
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+  with_items:
+    - limnoria-fanshawe

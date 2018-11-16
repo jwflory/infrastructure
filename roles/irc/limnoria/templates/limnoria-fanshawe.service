@@ -1,0 +1,13 @@
+[Unit]
+Description=Limnoria IRC bot (bot name: fanshawe)
+Requires=network.target
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/supybot --allow-root /usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
