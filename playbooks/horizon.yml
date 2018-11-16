@@ -7,9 +7,11 @@
     - common-centos/7
     - firewalld
     - nginx
+    - php-fpm
     - sshd
     - yum-cron
     - irc/limnoria
+    - sites/blog.justinwflory.com
     - sites/horizon.justinwflory.com
     - sites/i.jwf.io
     - sites/mirror.justinwflory.com

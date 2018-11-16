@@ -1,12 +1,6 @@
 ---
 # https://mariadb.com/kb/en/library/upgrading-from-mariadb-55-to-mariadb-100/
 # - mariadb101u-server
-# - php72u-common
-# - php72u-dba
-# - php72u-fpm
-# - php72u-gd
-# - php72u-json
-# - php72u-xml
 
 - name: install/upgrade epel-release (CentOS only)
   when: ansible_distribution == 'CentOS'
