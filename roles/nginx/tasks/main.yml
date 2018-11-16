@@ -88,3 +88,8 @@
     - index.html
     - nginx-logo.png
     - poweredby.png
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started
