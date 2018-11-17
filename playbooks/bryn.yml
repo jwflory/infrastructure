@@ -4,7 +4,7 @@
   become: yes
 
   roles:
-    - common-centos/7
+    - base/centos/7
     - firewalld
     - sshd
     - yum-cron
