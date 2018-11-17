@@ -6,11 +6,6 @@
       - epel-release
       - https://centos7.iuscommunity.org/ius-release.rpm
 
-- name: upgrade all current packages to latest versions
-  package:
-    state: latest
-    name: '*'
-
 - name: install base packages
   package:
     state: latest
