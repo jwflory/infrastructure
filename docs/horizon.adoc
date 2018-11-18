@@ -1,0 +1,30 @@
+= Logbook: horizon.justinwflory.com
+
+Running logbook of documentation notes for Horizon.
+
+
+== Firewall
+
+_See https://github.com/jwflory/infrastructure/blob/master/roles/firewalld/tasks/main.yml[jwflory/infrastructure firewalld Ansible role]._
+
+
+== WordPress
+
+=== wp_cli cannot upgrade WordPress because another update is in progress
+
+`wp option get core_updater.lock`::
+Check if WordPress is holding a version lock.
+If a number is returned, the version lock is on.
+
+`wp option delete core_updater.lock`::
+Break a version lock on WordPress.
+Verify an update is NOT in progress before deleting (check processes, visit admin panel).
+
+https://wordpress.stackexchange.com/questions/224989/get-rid-of-another-update-is-currently-in-progress[Reference]
+
+
+== XenForo
+
+* `sitemaps/` and `temp/` must have 0777 permissions…
+** `temp/` is for the image proxy
+
