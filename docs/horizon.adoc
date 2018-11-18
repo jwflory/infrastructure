@@ -10,6 +10,17 @@ _See https://github.com/jwflory/infrastructure/blob/master/roles/firewalld/tasks
 
 == WordPress
 
+=== Updating from admin dashboard does not work: "failed to create directory"
+
+The web server cannot read or write to files in the web directory.
+Make sure the `php-fpm` user is a member of the `www-admin` group and that the folder is group-writable.
+
+Why does this happen?
+Normally, your web server needs access, like `nginx` or `httpd`.
+But in my case, `nginx` is spinning off `php-fpm` processes to run PHP web applications.
+This user is trying to read and write from files instead of the web server.
+Look closer at https://github.com/jwflory/infrastructure[jwflory/infrastructure] for additional context.
+
 === wp_cli cannot upgrade WordPress because another update is in progress
 
 `wp option get core_updater.lock`::
