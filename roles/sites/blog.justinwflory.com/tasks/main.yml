@@ -13,6 +13,12 @@
     name:
       - mariadb101u-server
 
+- name: start/enable MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
 - name: create server block root directory
   file:
     state: directory
