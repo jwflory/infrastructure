@@ -1,0 +1,7 @@
+---
+- name: provision Teleirc bridge bots
+  hosts: irc-lug.rit.edu
+  become: yes
+
+  roles:
+    - teleirc/default
