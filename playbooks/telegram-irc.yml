@@ -1,0 +1,7 @@
+---
+- name: provision Fedora Teleirc bridge bots
+  hosts: telegram-irc.fedorainfracloud.org
+  become: yes
+
+  roles:
+    - teleirc/fedora
