@@ -1,0 +1,202 @@
+---
+default_imgur_client_id: "{{ vault_default_imgur_client_id }}"
+default_irc_server: chat.freenode.net
+default_irc_nickserv_service: NickServ
+
+bots:
+  fedora:
+    cn: "fedora"
+    irc_blacklist: ""
+    irc_bot_name: teledora
+    irc_channel: "#fedora-telegram"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  # Fedora Ask discussion (ask.fedoraproject.org)
+  fedora_ask:
+    cn: "fedora-ask"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedask
+    irc_channel: "#fedora-ask"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_ask.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_ask.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_ask.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_commops:
+    cn: "fedora-commops"
+    irc_blacklist: "commops-bot,commops-bot-s,commops-watch,commops-watch-s"
+    irc_bot_name: tg-fedcommops
+    irc_channel: "#fedora-commops"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_commops.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_commops.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_commops.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_diversity:
+    cn: "fedora-diversity"
+    irc_blacklist: "fm-diversity,fm-stg-diversity,fm-diversity_"
+    irc_bot_name: tg-fed-di
+    irc_channel: "#fedora-diversity"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_diversity.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_diversity.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_diversity.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_docs:
+    cn: "fedora-docs"
+    irc_blacklist: ""
+    irc_bot_name: fdocs-tg
+    irc_channel: "#fedora-docs"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_docs.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_docs.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_docs.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  # Fedora Ecuador
+  fedora_ec:
+    cn: "fedora-ec"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedec
+    irc_channel: "#fedora-ec"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_ec.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_ec.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_ec.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_flock:
+    cn: "fedora-flock"
+    irc_blacklist: ""
+    irc_bot_name: flock-tg
+    irc_channel: "#fedora-flock"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_flock.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_flock.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_flock.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_join:
+    cn: "fedora-join"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedjoin
+    irc_channel: "#fedora-join"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_join.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_join.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_join.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_latam:
+    cn: "fedora-latam"
+    irc_blacklist: ""
+    irc_bot_name: fedlatam-tg
+    irc_channel: "#fedora-latam"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_latam.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_latam.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_latam.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_mindshare:
+    cn: "fedora-mindshare"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedmindshare
+    irc_channel: "#fedora-mindshare"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_mindshare.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_mindshare.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_mindshare.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_marketing:
+    cn: "fedora-marketing"
+    irc_blacklist: "fm-mktg,fm-stg-mktg"
+    irc_bot_name: tg-fedmktg
+    irc_channel: "#fedora-mktg"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_marketing.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_marketing.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_marketing.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  # Fedora Panama
+  # fedora_pa:
+  #   cn: "fedora-pa"
+  #   irc_blacklist: ""
+  #   irc_bot_name: tg-fedpa
+  #   irc_channel: "#fedora-pa"
+  #   irc_server: "{{ default_irc_server }}"
+  #   irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+  #   irc_nickserv_password: "{{ vault_bots.fedora_pa.vault_irc_nickserv_password }}"
+  #   teleirc_token: "{{ vault_bots.fedora_pa.vault_teleirc_token }}"
+  #   teleirc_chat_id: "{{ vault_bots.fedora_pa.vault_teleirc_chat_id }}"
+  #   imgur_client_id: "{{ default_imgur_client_id }}"
+
+  # Fedora Albania
+  fedora_sq:
+    cn: "fedora-sq"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedsq
+    irc_channel: "#fedora-sq"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_sq.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_sq.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_sq.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_summer_coding:
+    cn: "fedora-summer-coding"
+    irc_blacklist: ""
+    irc_bot_name: fedgsoc-tg
+    irc_channel: "#fedora-summer-coding"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_summer_coding.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_summer_coding.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_summer_coding.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  fedora_women:
+    cn: "fedora-women"
+    irc_blacklist: ""
+    irc_bot_name: tg-fedwomen
+    irc_channel: "#fedora-women"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_women.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_women.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_women.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+
+  # Fedora China
+  fedora_zh:
+    cn: "fedora-zh"
+    irc_blacklist: ""
+    irc_bot_name: fzh-tg
+    irc_channel: "#fedora-zh"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_zh.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_zh.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_zh.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"

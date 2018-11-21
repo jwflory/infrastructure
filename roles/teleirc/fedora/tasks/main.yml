@@ -1,4 +1,7 @@
 ---
+- name: import Vault-encrypted variables with API tokens and Telegram chat IDs
+  include_vars: vault.yml
+
 - name: install git
   package:
     state: present
