@@ -1,0 +1,7 @@
+---
+- name: synchronize fanshawe limnoria deployment state to horizon
+  hosts: horizon
+  become: yes
+
+  roles:
+    - irc/limnoria
