@@ -31,7 +31,7 @@ bots:
 
   fedora_commops:
     cn: "fedora-commops"
-    irc_blacklist: "commops-bot,commops-bot-s,commops-watch,commops-watch-s"
+    irc_blacklist: "commops-bot,commops-bot-s,commops-watch,commops-watch-s,commops-watch_"
     irc_bot_name: tg-fedcommops
     irc_channel: "#fedora-commops"
     irc_server: "{{ default_irc_server }}"
