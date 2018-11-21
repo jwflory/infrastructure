@@ -1,6 +1,17 @@
 ---
-- name: restart limnoria-fanshawe
+- name: stop limnoria-fanshawe
   service:
     name: limnoria-fanshawe
-    state: restarted
+    state: stopped
+
+- name: move limnoria-fanshawe config
+  copy:
+    src: "/usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf.ansible"
+    dest: "/usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf"
+    remote_src: yes
+
+- name: start/enable limnoria-fanshawe
+  service:
+    name: limnoria-fanshawe
+    state: started
     enabled: yes

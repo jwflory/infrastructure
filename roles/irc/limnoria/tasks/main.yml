@@ -28,20 +28,22 @@
 - name: copy limnoria configs
   template:
     src: "{{ item }}.conf"
-    dest: "/usr/lib64/limnoria/{{ item }}/{{ item }}.conf"
-    mode: 0660
+    dest: "/usr/lib64/limnoria/{{ item }}/{{ item }}.conf.ansible"
+    mode: 0640
     seuser: system_u
   with_items:
     - limnoria-fanshawe
+  notify:
+    - stop limnoria-fanshawe
+    - move limnoria-fanshawe config
+    - start/enable limnoria-fanshawe
 
 - name: copy systemd service files
   template:
     src: "{{ item }}.service"
     dest: "/usr/lib/systemd/system/{{ item }}.service"
-    mode: 0664
+    mode: 0644
     seuser: system_u
     setype: systemd_unit_file_t
   with_items:
     - limnoria-fanshawe
-  notify:
-    - restart limnoria-fanshawe
