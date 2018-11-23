@@ -7,11 +7,30 @@
     state: present
     name: git
 
+- name: create system user for Teleirc bots
+  user:
+    name: teleirc
+    comment: "System user to run RITlug/teleirc bots - do not use"
+    system: yes
+    home: "/usr/lib64/teleirc"
+    create_home: no
+
+- name: create group for Teleirc admins
+  group: name=teleirc
+
+- name: add target user to Teleirc admin group
+  user:
+    name: "{{ target_user }}"
+    groups: teleirc
+    append: yes
+
 - name: create root directory for Teleirc bots
   file:
     state: directory
     path: "/usr/lib64/teleirc"
     mode: 0755
+    owner: teleirc
+    group: teleirc
     seuser: system_u
 
 - name: git clone/pull RITlug/teleirc v1.2
@@ -41,12 +60,22 @@
 #
 # - name: install yarn
 # - name: yarn install
+- name: "set file permissions to teleirc:teleirc in /usr/lib64/teleirc/"
+  file:
+    state: directory
+    recurse: yes
+    path: "/usr/lib64/teleirc"
+    owner: teleirc
+    group: teleirc
+
 
 - name: add templated configuration
   template:
     src: env
     dest: "/usr/lib64/teleirc/{{ item.cn }}/.env"
     mode: 0640
+    owner: teleirc
+    group: teleirc
     seuser: system_u
   with_items:
     - "{{ bots.fedora }}"
