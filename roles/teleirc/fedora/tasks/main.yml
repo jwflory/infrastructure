@@ -49,11 +49,12 @@
     group: teleirc
     seuser: system_u
 
-- name: git clone/pull RITlug/teleirc v1.2
+- name: git clone/pull RITlug/teleirc v1.2.1
   git:
     repo: "https://github.com/RITlug/teleirc.git"
     dest: "/usr/lib64/teleirc/{{ item.cn }}"
-    version: v1.2
+    version: v1.2.1
+    force: yes
   with_items:
     - "{{ bots.fedora }}"
     - "{{ bots.fedora_ask }}"
