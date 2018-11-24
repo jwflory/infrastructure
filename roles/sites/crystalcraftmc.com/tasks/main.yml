@@ -1,0 +1,74 @@
+---
+# CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
+# For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
+
+- name: (hack) erase conflicting mariadb-libs package
+  package:
+    state: absent
+    name: mariadb-libs
+
+- name: add IUS repositories
+  package:
+    state: present
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install MariaDB
+  package:
+    state: present
+    name:
+      - mariadb101u-server
+
+- name: start/enable MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: create server block root directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/"
+    mode: 0755
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create html directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/html/"
+    mode: 0775
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create logs directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/logs/"
+    mode: 0755
+    group: nginx
+    owner: nginx
+    seuser: system_u
+    setype: httpd_log_t
+
+- name: copy favicon.ico
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/{{ site_fqdn }}/html/{{ item }}"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+  with_items:
+    - favicon.ico
+
+- name: nginx - copy crystalcraftmc.com.conf
+  template:
+    src: "{{ site_fqdn }}.conf"
+    dest: "/etc/nginx/conf.d/{{ site_fqdn }}.conf"
+    mode: 0644
+  notify:
+    - restart php-fpm
+    - restart nginx
