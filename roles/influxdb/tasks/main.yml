@@ -1,0 +1,65 @@
+---
+- name: add influxdb.repo to /etc/yum.repos.d/
+  copy:
+    src: influxdb.repo
+    dest: /etc/yum.repos.d/influxdb.repo
+    mode: 0644
+    seuser: system_u
+
+- name: install influxdb
+  package:
+    state: present
+    name: influxdb
+
+- name: add firewalld rule for InfluxDB server
+  firewalld:
+    state: enabled
+    port: 8086/tcp
+    immediate: yes
+    permanent: yes
+
+- name: add influxdb.conf to /etc/influxdb/
+  template:
+    src: influxdb.conf
+    dest: /etc/influxdb/influxdb.conf
+    mode: 0644
+    seuser: system_u
+  notify:
+    - restart influxdb
+
+- name: create directory for TLS certs
+  file:
+    state: directory
+    path: /usr/lib/influxdb/tls/
+    mode: 0750
+    owner: influxdb
+    group: influxdb
+    seuser: system_u
+
+- name: create directory for host-specific certs
+  file:
+    state: directory
+    path: /usr/lib/influxdb/tls/{{ influxdb_server_fqdn }}/
+    mode: 0750
+    owner: influxdb
+    group: influxdb
+    seuser: system_u
+
+- name: copy LetsEncrypt certs to InfluxDB TLS certs directory
+  copy:
+    src: "/etc/letsencrypt/live/{{ influxdb_server_fqdn }}/{{ item }}"
+    dest: "/usr/lib/influxdb/tls/{{ influxdb_server_fqdn }}/{{ item }}"
+    remote_src: yes
+    mode: 0400
+    owner: influxdb
+    group: influxdb
+    seuser: system_u
+  with_items:
+    - fullchain.pem
+    - privkey.pem
+
+- name: start/enable influxdb service
+  service:
+    name: influxdb
+    state: started
+    enabled: yes  
