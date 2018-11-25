@@ -1,38 +1,61 @@
 ---
-- name: install epel-release
-  package:
-    state: present
-    name: epel-release
+- name: create system user for limnoria bots
+  user:
+    name: limnoria
+    comment: "system user to run limnoria IRC bots - do not use"
+    system: yes
+    home: "/usr/lib64/limnoria"
+    create_home: no
 
-- name: create root directory for limnoria bots
+- name: add target user to limnoria admin group
+  user:
+    name: "{{ target_user }}"
+    groups: limnoria
+    append: yes
+
+- name: limnoria - create root directory for limnoria bots
   file:
     state: directory
     path: "/usr/lib64/limnoria"
     mode: 0755
+    owner: limnoria
+    group: limnoria
     seuser: system_u
 
-- name: create directory for each bot
+- name: limnoria - create directory for each bot
   file:
     state: directory
-    path: "/usr/lib64/limnoria/{{ item }}"
+    path: "/usr/lib64/limnoria/{{ item.cn }}"
     mode: 0755
+    owner: limnoria
+    group: limnoria
     seuser: system_u
   with_items:
-    - limnoria-fanshawe
+    - "{{ bots.fanshawe }}"
 
 - name: install/upgrade limnoria
   package:
     state: latest
     name: limnoria
 
+- name: "set file permissions to limnoria:limnoria in /usr/lib64/limnoria/"
+  file:
+    state: directory
+    recurse: yes
+    path: "/usr/lib64/limnoria"
+    owner: limnoria
+    group: limnoria
+
 - name: copy limnoria configs
   template:
-    src: "{{ item }}.conf"
-    dest: "/usr/lib64/limnoria/{{ item }}/{{ item }}.conf.ansible"
+    src: "limnoria-{{ item.cn }}.conf"
+    dest: "/usr/lib64/limnoria/{{ item.cn }}/limnoria-{{ item.cn }}.conf.ansible"
     mode: 0640
+    owner: limnoria
+    group: limnoria
     seuser: system_u
   with_items:
-    - limnoria-fanshawe
+    - "{{ bots.fanshawe }}"
   notify:
     - stop limnoria-fanshawe
     - move limnoria-fanshawe config
@@ -40,10 +63,10 @@
 
 - name: copy systemd service files
   template:
-    src: "{{ item }}.service"
-    dest: "/usr/lib/systemd/system/{{ item }}.service"
+    src: "limnoria-{{ item.cn }}.service"
+    dest: "/usr/lib/systemd/system/limnoria-{{ item.cn }}.service"
     mode: 0644
     seuser: system_u
     setype: systemd_unit_file_t
   with_items:
-    - limnoria-fanshawe
+    - "{{ bots.fanshawe }}"

@@ -1,11 +1,12 @@
 [Unit]
-Description=Limnoria IRC bot (bot name: fanshawe)
+Description=Limnoria IRC bot (bot name: {{ item.cn }})
 Requires=network.target
 After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/supybot --allow-root /usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf
+User=limnoria
+ExecStart=/usr/bin/supybot /usr/lib64/limnoria/{{ item.cn }}/limnoria-{{ item.cn }}.conf
 Restart=always
 RestartSec=60
 
