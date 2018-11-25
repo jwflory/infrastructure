@@ -1,9 +1,9 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                                                                   #
-#      THIS FILE IS MANAGED BY ANSIBLE! ALL CHANGES OVERRIDDEN!     #
-#           https://github.com/jwflory/infrastructure               #
-#                                                                   #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+###############################################################################
+#                                                                             #
+#           THIS FILE IS MANAGED BY ANSIBLE! CHANGES ARE OVERWRITTEN.         #
+#                   https://github.com/jwflory/infrastructure                 #
+#                                                                             #
+###############################################################################
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
