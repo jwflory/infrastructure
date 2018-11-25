@@ -6,9 +6,13 @@
 
 - name: move limnoria-fanshawe config
   copy:
-    src: "/usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf.ansible"
-    dest: "/usr/lib64/limnoria/limnoria-fanshawe/limnoria-fanshawe.conf"
+    src: "/usr/lib64/limnoria/fanshawe/limnoria-fanshawe.conf.ansible"
+    dest: "/usr/lib64/limnoria/fanshawe/limnoria-fanshawe.conf"
     remote_src: yes
+    mode: 0640
+    owner: limnoria
+    group: limnoria
+    seuser: system_u
 
 - name: start/enable limnoria-fanshawe
   service:
