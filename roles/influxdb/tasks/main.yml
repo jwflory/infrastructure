@@ -1,4 +1,8 @@
 ---
+- name: import global variables
+  include_vars:
+    dir: "{{ inventory_dir }}/group_vars/"
+
 - name: add influxdb.repo to /etc/yum.repos.d/
   copy:
     src: influxdb.repo
@@ -39,7 +43,7 @@
 - name: create directory for host-specific certs
   file:
     state: directory
-    path: /usr/lib/influxdb/tls/{{ influxdb_server_fqdn }}/
+    path: /usr/lib/influxdb/tls/{{ influxdb.server_fqdn }}/
     mode: 0750
     owner: influxdb
     group: influxdb
@@ -47,8 +51,8 @@
 
 - name: copy LetsEncrypt certs to InfluxDB TLS certs directory
   copy:
-    src: "/etc/letsencrypt/live/{{ influxdb_server_fqdn }}/{{ item }}"
-    dest: "/usr/lib/influxdb/tls/{{ influxdb_server_fqdn }}/{{ item }}"
+    src: "/etc/letsencrypt/live/{{ influxdb.server_fqdn }}/{{ item }}"
+    dest: "/usr/lib/influxdb/tls/{{ influxdb.server_fqdn }}/{{ item }}"
     remote_src: yes
     mode: 0400
     owner: influxdb
