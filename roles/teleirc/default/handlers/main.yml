@@ -1,0 +1,20 @@
+---
+- name: install build dependencies
+  package:
+    state: present
+    name:
+      - gcc-c++
+      - libicu-devel
+
+- name: install runtime dependencies with yarn
+  become_user: teleirc
+  command: "yarn"
+  args:
+    chdir: "/usr/lib64/teleirc/{{ item.cn }}/"
+
+- name: remove build dependencies
+  package:
+    state: absent
+    name:
+      - gcc-c++
+      - libicu-devel
