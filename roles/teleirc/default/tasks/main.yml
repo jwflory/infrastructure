@@ -52,7 +52,7 @@
     - "{{ bots.ritlug }}"
   notify:
     - install build dependencies
-    - install dependencies with yarn
+    - install runtime dependencies with yarn
     - remove build dependencies
 
 - name: git clone/pull RITlug/teleirc from HEAD (for testing bot)
