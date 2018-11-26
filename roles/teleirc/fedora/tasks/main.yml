@@ -2,12 +2,6 @@
 - name: import Vault-encrypted variables with API tokens and Telegram chat IDs
   include_vars: vault.yml
 
-- name: install/upgrade epel-release (CentOS only)
-  when: ansible_distribution == 'CentOS'
-  package:
-    state: latest
-    name: epel-release
-
 - name: add yarn third-party repository
   get_url:
     dest: "/etc/yum.repos.d/"
@@ -15,24 +9,20 @@
     setype: system_conf_t
     seuser: system_u
 
-- name: install git, nodejs, yarn
+- name: install nodejs and yarn
   package:
     state: present
     name:
-      - git
       - nodejs
       - yarn
 
 - name: create system user for Teleirc bots
   user:
     name: teleirc
-    comment: "System user to run RITlug/teleirc bots - do not use"
+    comment: "system user to run RITlug/teleirc bots - do not use"
     system: yes
     home: "/usr/lib64/teleirc"
     create_home: no
-
-- name: create group for Teleirc admins
-  group: name=teleirc
 
 - name: add target user to Teleirc admin group
   user:
@@ -73,6 +63,11 @@
     - "{{ bots.fedora_summer_coding }}"
     - "{{ bots.fedora_women }}"
     - "{{ bots.fedora_zh }}"
+  notify:
+    - install build dependencies
+    - install runtime dependencies with yarn
+    - remove build dependencies
+    - restart teleirc
 
 - name: "set file permissions to teleirc:teleirc in /usr/lib64/teleirc/"
   file:
@@ -81,30 +76,6 @@
     path: "/usr/lib64/teleirc"
     owner: teleirc
     group: teleirc
-
-- name: install dependencies via yarn
-  become_user: teleirc
-  command: "yarn install"
-  args:
-    chdir: "/usr/lib64/teleirc/{{ item.cn }}/"
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
 
 - name: add templated configuration
   template:
@@ -132,6 +103,8 @@
     - "{{ bots.fedora_summer_coding }}"
     - "{{ bots.fedora_women }}"
     - "{{ bots.fedora_zh }}"
+  notify:
+    - restart teleirc
 
 - name: add templated systemd unit file
   template:

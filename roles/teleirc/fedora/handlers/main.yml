@@ -1,0 +1,61 @@
+---
+- name: install build dependencies
+  package:
+    state: present
+    name:
+      - gcc-c++
+      - libicu-devel
+
+- name: install runtime dependencies with yarn
+  become_user: teleirc
+  command: "yarn"
+  args:
+    chdir: "/usr/lib64/teleirc/{{ item.cn }}/"
+  with_items:
+    - "{{ bots.fedora }}"
+    - "{{ bots.fedora_ask }}"
+    - "{{ bots.fedora_commops }}"
+    - "{{ bots.fedora_diversity }}"
+    - "{{ bots.fedora_docs }}"
+    - "{{ bots.fedora_ec }}"
+    - "{{ bots.fedora_flock }}"
+    - "{{ bots.fedora_join }}"
+    - "{{ bots.fedora_latam }}"
+    - "{{ bots.fedora_mindshare }}"
+    - "{{ bots.fedora_marketing }}"
+    - "{{ bots.fedora_neuro }}"
+    - "{{ bots.fedora_pa }}"
+    - "{{ bots.fedora_sq }}"
+    - "{{ bots.fedora_summer_coding }}"
+    - "{{ bots.fedora_women }}"
+    - "{{ bots.fedora_zh }}"
+
+- name: remove build dependencies
+  package:
+    state: absent
+    name:
+      - gcc-c++
+      - libicu-devel
+
+- name: restart teleirc
+  service:
+    name: "teleirc-{{ item.cn }}.service"
+    state: restarted
+  with_items:
+    - "{{ bots.fedora }}"
+    - "{{ bots.fedora_ask }}"
+    - "{{ bots.fedora_commops }}"
+    - "{{ bots.fedora_diversity }}"
+    - "{{ bots.fedora_docs }}"
+    - "{{ bots.fedora_ec }}"
+    - "{{ bots.fedora_flock }}"
+    - "{{ bots.fedora_join }}"
+    - "{{ bots.fedora_latam }}"
+    - "{{ bots.fedora_mindshare }}"
+    - "{{ bots.fedora_marketing }}"
+    - "{{ bots.fedora_neuro }}"
+    - "{{ bots.fedora_pa }}"
+    - "{{ bots.fedora_sq }}"
+    - "{{ bots.fedora_summer_coding }}"
+    - "{{ bots.fedora_women }}"
+    - "{{ bots.fedora_zh }}"
