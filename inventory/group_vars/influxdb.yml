@@ -1,0 +1,34 @@
+---
+influxdb:
+
+  server_fqdn: horizon.justinwflory.com
+
+  databases:
+    default:
+      cn: infrastructure
+
+  users:
+    admin:
+      cn: admin
+      password: "{{ vault_influxdb.users.admin.password }}"
+    cortana:
+      cn: cortana
+      password: "{{ vault_influxdb.users.cortana.password }}"
+    derezzed:
+      cn: derezzed
+      password: "{{ vault_influxdb.users.derezzed.password }}"
+    estrella:
+      cn: estrella
+      password: "{{ vault_influxdb.users.estrella.password }}"
+    fiction:
+      cn: fiction
+      password: "{{ vault_influxdb.users.fiction.password }}"
+    grantgreen:
+      cn: grantgreen
+      password: "{{ vault_influxdb.users.grantgreen.password }}"
+    horizon:
+      cn: horizon
+      password: "{{ vault_influxdb.users.horizon.password }}"
+    grafana:
+      cn: grafana
+      password: "{{ vault_influxdb.users.grafana.password }}"
