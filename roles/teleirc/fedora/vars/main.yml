@@ -140,7 +140,7 @@ bots:
 
   fedora_neuro:
     cn: "fedora-neuro"
-    irc_blacklist: "fm-neuro,fm-neuro_"
+    irc_blacklist: ""
     irc_bot_name: tg-fedneuro
     irc_channel: "#fedora-neuro"
     irc_server: "{{ default_irc_server }}"
