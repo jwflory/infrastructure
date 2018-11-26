@@ -1,0 +1,74 @@
+---
+# NOTE: Admin user must already be set up for this playbook to work.
+
+- name: set up InfluxDB default database and users for the first time
+  hosts: horizon
+  become: yes
+
+  handlers:
+    - name: uninstall python2-pip if new package
+      package:
+        state: absent
+        name: python2-pip
+
+  tasks:
+    - name: import global variables
+      include_vars:
+        dir: "{{ inventory_dir }}/group_vars/"
+
+    - name: install python2-pip (if not installed)
+      package:
+        state: present
+        name: python2-pip
+      notify:
+        - uninstall python2-pip if new package
+
+    - name: install influxdb with pip
+      pip:
+        executable: pip2
+        state: present
+        name: influxdb
+
+    - name: create default infrastructure database (if not yet created)
+      influxdb_database:
+        database_name: "{{ influxdb.databases.default.cn }}"
+        hostname: "{{ influxdb.server_fqdn }}"
+        username: "{{ influxdb.users.admin.cn }}"
+        password: "{{ influxdb.users.admin.password }}"
+        ssl: yes
+
+    - name: add non-privileged influxdb users
+      influxdb_user:
+        user_name: "{{ item.cn }}"
+        user_password: "{{ item.password }}"
+        hostname: "{{ influxdb.server_fqdn }}"
+        username: "{{ influxdb.users.admin.cn }}"
+        password: "{{ influxdb.users.admin.password }}"
+        ssl: yes
+      with_items:
+        - "{{ influxdb.users.cortana }}"
+        - "{{ influxdb.users.derezzed }}"
+        - "{{ influxdb.users.estrella }}"
+        - "{{ influxdb.users.fiction }}"
+        - "{{ influxdb.users.grantgreen }}"
+        - "{{ influxdb.users.horizon }}"
+        - "{{ influxdb.users.grafana }}"
+
+    - name: add write permissions to default database for host-specific users
+      command: "influx -host {{ influxdb.server_fqdn }} -ssl -username {{ influxdb.users.admin.cn }} -password '{{ influxdb.users.admin.password }}' -execute 'GRANT WRITE ON {{ influxdb.databases.default.cn }} TO {{ item.cn }}'"
+      with_items:
+        - "{{ influxdb.users.cortana }}"
+        - "{{ influxdb.users.derezzed }}"
+        - "{{ influxdb.users.estrella }}"
+        - "{{ influxdb.users.fiction }}"
+        - "{{ influxdb.users.grantgreen }}"
+        - "{{ influxdb.users.horizon }}"
+
+    - name: add read permissions to default database for grafana user
+      command: "influx -host {{ influxdb.server_fqdn }} -ssl -username {{ influxdb.users.admin.cn }} -password '{{ influxdb.users.admin.password }}' -execute 'GRANT READ ON {{ influxdb.databases.default.cn }} TO {{ influxdb.users.grafana.cn }}'"
+
+    - name: uninstall influxdb with pip
+      pip:
+        executable: pip2
+        state: absent
+        name: influxdb

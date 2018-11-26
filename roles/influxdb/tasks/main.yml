@@ -62,4 +62,4 @@
   service:
     name: influxdb
     state: started
-    enabled: yes  
+    enabled: yes
