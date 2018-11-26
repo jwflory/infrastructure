@@ -9,3 +9,9 @@
     src: yum-cron.conf
     dest: /etc/yum/yum-cron.conf
   notify: restart yum-cron
+
+- name: start/enable yum-cron service
+  service:
+    name: yum-cron
+    state: started
+    enabled: yes
