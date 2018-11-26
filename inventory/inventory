@@ -1,4 +1,3 @@
-bryn.justinwflory.com
 cortana.justinwflory.com
 derezzed.justinwflory.com
 estrella.justinwflory.com
@@ -11,7 +10,6 @@ telegram-irc.fedorainfracloud.org
 127.0.0.1 ansible_connection=local
 
 [production]
-bryn
 cortana
 fiction
 grantgreen
@@ -23,7 +21,6 @@ derezzed
 estrella
 
 [centos7]
-bryn
 cortana
 derezzed
 estrella
