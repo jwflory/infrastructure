@@ -4,4 +4,8 @@
   become: yes
 
   roles:
+    - base/centos/7
+    - firewalld
+    - sshd
     - teleirc/default
+    - yum-cron
