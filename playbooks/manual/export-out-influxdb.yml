@@ -8,13 +8,6 @@
     user_home_dir: "/home/jflory"
 
   tasks:
-    - name: install required libraries (for xz compression)
-      package:
-        state: present
-        name:
-          - python2-PyMySQL
-          - python-backports-lzma
-
     - name: export databases with influxdb tools
       command: "influxd backup -portable /tmp/influxdb-backup/"
       args:
@@ -23,7 +16,7 @@
     - name: create local backup - compress all database dumps together
       archive:
         path: /tmp/influxdb-backup/
-        dest: "{{ user_home_dir }}/influxdb-backup-{{ ansible_date_time.iso8601 }}.gz"
+        dest: "{{ user_home_dir }}/wkspc/influxdb-backup-{{ ansible_date_time.iso8601 }}.gz"
         remove: yes
         mode: 0644
         owner: "{{ target_user }}"
