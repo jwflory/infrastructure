@@ -7,7 +7,7 @@
       - fail2ban-firewalld
       - firewalld
 
-- name: start and enable firewalld
+- name: start/enable firewalld
   service:
     name: firewalld
     state: started
