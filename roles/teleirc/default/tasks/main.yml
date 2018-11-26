@@ -54,6 +54,7 @@
     - install build dependencies
     - install runtime dependencies with yarn
     - remove build dependencies
+    - restart teleirc
 
 - name: git clone/pull RITlug/teleirc from HEAD (for testing bot)
   git:
@@ -64,6 +65,7 @@
     - install build dependencies
     - install runtime dependencies with yarn
     - remove build dependencies
+    - restart teleirc (devel)
 
 - name: "set file permissions to teleirc:teleirc in /usr/lib64/teleirc/"
   file:
@@ -87,6 +89,8 @@
     - "{{ bots.rit_foss }}"
     - "{{ bots.ritlug }}"
     - "{{ bots.ritlug_teleirc }}"
+  notify:
+    - restart teleirc
 
 - name: add templated systemd unit file
   template:

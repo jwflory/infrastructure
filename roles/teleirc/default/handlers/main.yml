@@ -24,3 +24,18 @@
     name:
       - gcc-c++
       - libicu-devel
+
+- name: restart teleirc
+  service:
+    name: "teleirc-{{ item.cn }}.service"
+    state: restarted
+  with_items:
+    - "{{ bots.minecon_agents }}"
+    - "{{ bots.musicbrainz }}"
+    - "{{ bots.rit_foss }}"
+    - "{{ bots.ritlug }}"
+
+- name: restart teleirc (devel)
+  service:
+    name: "teleirc-{{ bots.ritlug_teleirc.cn }}.service"
+    state: restarted
