@@ -2,7 +2,13 @@
 # CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
 # For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
 
-- name: (hack) erase conflicting mariadb-libs package
+- name: selinux - set httpd_can_network_connect to persistently true
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+
+- name: (bad hack, not idempotent) erase conflicting mariadb-libs package
   package:
     state: absent
     name: mariadb-libs
