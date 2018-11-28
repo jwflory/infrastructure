@@ -10,25 +10,8 @@
   become_user: teleirc
   command: "yarn"
   args:
-    chdir: "/usr/lib64/teleirc/{{ item.cn }}/"
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+    chdir: "/usr/lib64/teleirc/{{ item.value.cn }}/"
+  loop: "{{ bots|dict2items }}"
 
 - name: remove build dependencies
   package:
@@ -39,23 +22,6 @@
 
 - name: restart teleirc
   service:
-    name: "teleirc-{{ item.cn }}.service"
+    name: "teleirc-{{ item.value.cn }}.service"
     state: restarted
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+  loop: "{{ bots|dict2items }}"

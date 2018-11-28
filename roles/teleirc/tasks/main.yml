@@ -39,30 +39,13 @@
     group: teleirc
     seuser: system_u
 
-- name: git clone/pull RITlug/teleirc v1.2.1
+- name: git clone/pull RITlug/teleirc
   git:
     repo: "https://github.com/RITlug/teleirc.git"
-    dest: "/usr/lib64/teleirc/{{ item.cn }}"
+    dest: "/usr/lib64/teleirc/{{ item.value.cn }}"
     version: "{{ item.value.version }}"
     force: yes
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+  loop: "{{ bots|dict2items }}"
   notify:
     - install build dependencies
     - install runtime dependencies with yarn
@@ -80,78 +63,27 @@
 - name: add templated configuration
   template:
     src: env
-    dest: "/usr/lib64/teleirc/{{ item.cn }}/.env"
+    dest: "/usr/lib64/teleirc/{{ item.value.cn }}/.env"
     mode: 0640
     owner: teleirc
     group: teleirc
     seuser: system_u
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+  loop: "{{ bots|dict2items }}"
   notify:
     - restart teleirc
 
 - name: add templated systemd unit file
   template:
     src: teleirc.service
-    dest: "/usr/lib/systemd/system/teleirc-{{ item.cn }}.service"
+    dest: "/usr/lib/systemd/system/teleirc-{{ item.value.cn }}.service"
     mode: 0644
     seuser: system_u
     setype: systemd_unit_file_t
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+  loop: "{{ bots|dict2items }}"
 
 - name: start/enable each Teleirc systemd unit file
   service:
-    name: teleirc-{{ item.cn }}
+    name: teleirc-{{ item.value.cn }}
     state: started
     enabled: yes
-  with_items:
-    - "{{ bots.fedora }}"
-    - "{{ bots.fedora_ask }}"
-    - "{{ bots.fedora_commops }}"
-    - "{{ bots.fedora_diversity }}"
-    - "{{ bots.fedora_docs }}"
-    - "{{ bots.fedora_ec }}"
-    - "{{ bots.fedora_flock }}"
-    - "{{ bots.fedora_join }}"
-    - "{{ bots.fedora_latam }}"
-    - "{{ bots.fedora_mindshare }}"
-    - "{{ bots.fedora_marketing }}"
-    - "{{ bots.fedora_neuro }}"
-    - "{{ bots.fedora_pa }}"
-    - "{{ bots.fedora_sq }}"
-    - "{{ bots.fedora_summer_coding }}"
-    - "{{ bots.fedora_women }}"
-    - "{{ bots.fedora_zh }}"
+  loop: "{{ bots|dict2items }}"
