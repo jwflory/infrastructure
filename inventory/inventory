@@ -5,7 +5,6 @@ estrella.justinwflory.com
 fiction.justinwflory.com
 grantgreen.justinwflory.com
 horizon.justinwflory.com
-irc-lug.rit.edu
 telegram-irc.fedorainfracloud.org
 
 [dev]
@@ -17,7 +16,6 @@ cortana
 fiction
 grantgreen
 horizon
-irc-lug.rit.edu
 telegram-irc.fedorainfracloud.org
 
 [staging]
@@ -32,7 +30,3 @@ estrella
 fiction
 grantgreen
 horizon
-
-[teleirc_hosts]
-irc-lug.rit.edu
-telegram-irc.fedorainfracloud.org
