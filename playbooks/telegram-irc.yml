@@ -4,4 +4,6 @@
   become: yes
 
   roles:
+    - firewalld
+    - sshd
     - teleirc
