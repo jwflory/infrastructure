@@ -2,6 +2,7 @@
 default_imgur_client_id: "{{ vault_default_imgur_client_id }}"
 default_irc_server: chat.freenode.net
 default_irc_nickserv_service: NickServ
+default_version: v1.2.1
 
 bots:
   fedora:
@@ -15,6 +16,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   # Fedora Ask discussion (ask.fedoraproject.org)
   fedora_ask:
@@ -28,6 +30,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_ask.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_ask.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_commops:
     cn: "fedora-commops"
@@ -40,6 +43,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_commops.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_commops.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_diversity:
     cn: "fedora-diversity"
@@ -52,6 +56,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_diversity.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_diversity.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_docs:
     cn: "fedora-docs"
@@ -64,6 +69,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_docs.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_docs.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   # Fedora Ecuador
   fedora_ec:
@@ -77,6 +83,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_ec.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_ec.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_flock:
     cn: "fedora-flock"
@@ -89,6 +96,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_flock.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_flock.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_join:
     cn: "fedora-join"
@@ -101,6 +109,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_join.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_join.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_latam:
     cn: "fedora-latam"
@@ -113,6 +122,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_latam.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_latam.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_mindshare:
     cn: "fedora-mindshare"
@@ -125,6 +135,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_mindshare.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_mindshare.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_marketing:
     cn: "fedora-marketing"
@@ -137,6 +148,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_marketing.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_marketing.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_neuro:
     cn: "fedora-neuro"
@@ -149,6 +161,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_neuro.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_neuro.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   # Fedora Panama
   fedora_pa:
@@ -162,6 +175,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_pa.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_pa.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   # Fedora Albania
   fedora_sq:
@@ -175,6 +189,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_sq.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_sq.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_summer_coding:
     cn: "fedora-summer-coding"
@@ -187,6 +202,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_summer_coding.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_summer_coding.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   fedora_women:
     cn: "fedora-women"
@@ -199,6 +215,7 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_women.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_women.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
 
   # Fedora China
   fedora_zh:
@@ -212,3 +229,4 @@ bots:
     teleirc_token: "{{ vault_bots.fedora_zh.vault_teleirc_token }}"
     teleirc_chat_id: "{{ vault_bots.fedora_zh.vault_teleirc_chat_id }}"
     imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
