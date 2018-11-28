@@ -43,7 +43,7 @@
   git:
     repo: "https://github.com/RITlug/teleirc.git"
     dest: "/usr/lib64/teleirc/{{ item.cn }}"
-    version: v1.2.1
+    version: "{{ item.value.version }}"
     force: yes
   with_items:
     - "{{ bots.fedora }}"
