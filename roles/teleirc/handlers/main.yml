@@ -5,6 +5,7 @@
     name:
       - gcc-c++
       - libicu-devel
+      - make
 
 - name: install runtime dependencies with yarn
   become_user: teleirc
@@ -19,6 +20,7 @@
     name:
       - gcc-c++
       - libicu-devel
+      - make
 
 - name: restart teleirc
   service:
