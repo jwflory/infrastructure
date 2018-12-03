@@ -5,7 +5,7 @@ bots:
     cn: fanshawe
     irc_network_name: freenode
     irc_network_address: chat.freenode.net:6697
-    irc_channels: "##jwf #musicbrainz-telegram #rit #rit-foss #ritlug #ritlug-teleirc"
+    irc_channels: "##jwf #musicbrainz-telegram #rit #rit-foss #rit-lug-sysadmin #ritlug #ritlug-teleirc"
     irc_sasl_user: Fanshawe
     vault_irc_sasl_password: !vault |
             $ANSIBLE_VAULT;1.1;AES256
