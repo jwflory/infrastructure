@@ -13,6 +13,7 @@
   args:
     chdir: "/usr/lib64/teleirc/{{ item.value.cn }}/"
   loop: "{{ bots|dict2items }}"
+  ignore_errors: yes
 
 - name: remove build dependencies
   package:
