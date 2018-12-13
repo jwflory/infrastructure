@@ -124,6 +124,20 @@ bots:
     imgur_client_id: "{{ default_imgur_client_id }}"
     version: "{{ default_version }}"
 
+  # Fedora Latin America
+  fedora_latam:
+    cn: "fedora-latam"
+    irc_blacklist: "fedoralatam_bot"
+    irc_bot_name: fedlatam-tg
+    irc_channel: "#fedora-latam"
+    irc_server: "{{ default_irc_server }}"
+    irc_nickserv_service: "{{ default_irc_nickserv_service }}"
+    irc_nickserv_password: "{{ vault_bots.fedora_latam.vault_irc_nickserv_password }}"
+    teleirc_token: "{{ vault_bots.fedora_latam.vault_teleirc_token }}"
+    teleirc_chat_id: "{{ vault_bots.fedora_latam.vault_teleirc_chat_id }}"
+    imgur_client_id: "{{ default_imgur_client_id }}"
+    version: "{{ default_version }}"
+
   fedora_mindshare:
     cn: "fedora-mindshare"
     irc_blacklist: ""
