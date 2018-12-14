@@ -1,7 +1,6 @@
 cortana.justinwflory.com
 derezzed.justinwflory.com
 estrella.justinwflory.com
-fiction.justinwflory.com
 grantgreen.justinwflory.com
 horizon.justinwflory.com
 telegram-irc.fedorainfracloud.org
@@ -11,7 +10,6 @@ telegram-irc.fedorainfracloud.org
 
 [production]
 cortana
-fiction
 grantgreen
 horizon
 telegram-irc.fedorainfracloud.org
@@ -24,6 +22,5 @@ estrella
 cortana
 derezzed
 estrella
-fiction
 grantgreen
 horizon

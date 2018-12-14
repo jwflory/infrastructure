@@ -20,9 +20,6 @@ influxdb:
     estrella:
       cn: estrella
       password: "{{ vault_influxdb.users.estrella.password }}"
-    fiction:
-      cn: fiction
-      password: "{{ vault_influxdb.users.fiction.password }}"
     grantgreen:
       cn: grantgreen
       password: "{{ vault_influxdb.users.grantgreen.password }}"
