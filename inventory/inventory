@@ -3,7 +3,6 @@ derezzed.justinwflory.com
 estrella.justinwflory.com
 grantgreen.justinwflory.com
 horizon.justinwflory.com
-telegram-irc.fedorainfracloud.org
 
 [dev]
 127.0.0.1 ansible_connection=local
@@ -12,7 +11,6 @@ telegram-irc.fedorainfracloud.org
 cortana
 grantgreen
 horizon
-telegram-irc.fedorainfracloud.org
 
 [staging]
 derezzed
