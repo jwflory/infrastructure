@@ -20,8 +20,8 @@ influxdb:
     estrella:
       cn: estrella
       password: "{{ vault_influxdb.users.estrella.password }}"
-    grantgreen:
-      cn: grantgreen
+    fossrit:
+      cn: fossrit
       password: "{{ vault_influxdb.users.grantgreen.password }}"
     horizon:
       cn: horizon

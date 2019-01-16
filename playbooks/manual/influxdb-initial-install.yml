@@ -49,7 +49,7 @@
         - "{{ influxdb.users.cortana }}"
         - "{{ influxdb.users.derezzed }}"
         - "{{ influxdb.users.estrella }}"
-        - "{{ influxdb.users.grantgreen }}"
+        - "{{ influxdb.users.fossrit }}"
         - "{{ influxdb.users.horizon }}"
         - "{{ influxdb.users.grafana }}"
 
@@ -59,7 +59,7 @@
         - "{{ influxdb.users.cortana }}"
         - "{{ influxdb.users.derezzed }}"
         - "{{ influxdb.users.estrella }}"
-        - "{{ influxdb.users.grantgreen }}"
+        - "{{ influxdb.users.fossrit }}"
         - "{{ influxdb.users.horizon }}"
 
     - name: add read permissions to default database for grafana user

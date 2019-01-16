@@ -1,7 +1,6 @@
 cortana.justinwflory.com
 derezzed.justinwflory.com
 estrella.justinwflory.com
-grantgreen.justinwflory.com
 horizon.justinwflory.com
 
 [dev]
@@ -9,7 +8,6 @@ horizon.justinwflory.com
 
 [production]
 cortana
-grantgreen
 horizon
 
 [staging]
@@ -20,5 +18,4 @@ estrella
 cortana
 derezzed
 estrella
-grantgreen
 horizon
