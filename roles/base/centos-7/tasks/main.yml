@@ -17,6 +17,7 @@
       - htop
       - python36u
       - python36u-pip
+      - yum-plugin-replace
 
 - name: enable SELinux
   selinux:

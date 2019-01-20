@@ -1,7 +1,7 @@
 ---
-- name: install IUS repositories
+- name: install/upgrade IUS repositories
   package:
-    state: present
+    state: latest
     name:
       - epel-release
       - https://centos7.iuscommunity.org/ius-release.rpm
@@ -10,14 +10,14 @@
   package:
     state: present
     name:
-      - php72u-common
-      - php72u-dba
-      - php72u-fpm
-      - php72u-gd
-      - php72u-json
-      - php72u-mbstring
-      - php72u-mysqlnd
-      - php72u-xml
+      - php71u-common
+      - php71u-dba
+      - php71u-fpm
+      - php71u-gd
+      - php71u-json
+      - php71u-mbstring
+      - php71u-mysqlnd
+      - php71u-xml
 
 - name: php - copy php.ini
   copy:
