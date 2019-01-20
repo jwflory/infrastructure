@@ -22,7 +22,7 @@ influxdb:
       password: "{{ vault_influxdb.users.estrella.password }}"
     fossrit:
       cn: fossrit
-      password: "{{ vault_influxdb.users.grantgreen.password }}"
+      password: "{{ vault_influxdb.users.fossrit.password }}"
     horizon:
       cn: horizon
       password: "{{ vault_influxdb.users.horizon.password }}"
