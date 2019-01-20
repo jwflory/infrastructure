@@ -10,13 +10,16 @@
   package:
     state: present
     name:
+      - php71u-bcmath
       - php71u-common
       - php71u-dba
       - php71u-fpm
       - php71u-gd
       - php71u-json
       - php71u-mbstring
+      - php71u-mcrypt
       - php71u-mysqlnd
+      - php71u-pecl-imagick
       - php71u-xml
 
 - name: php - copy php.ini
