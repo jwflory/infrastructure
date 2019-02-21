@@ -1,0 +1,9 @@
+---
+- name: synchronize fedora-happinesspackets hosts
+  hosts: fedora-happinesspackets
+  become: yes
+
+  roles:
+    - base/centos-7
+    - firewalld
+    - yum-cron
