@@ -33,9 +33,9 @@
     path: "/var/www/blog.justinwflory.com/html/"
     mode: 0775
     group: www-admin
-    owner: www-admin
+    owner: php-fpm
     seuser: system_u
-    setype: httpd_sys_content_t
+    setype: httpd_sys_rw_content_t
 
 - name: nginx - create logs directory
   file:
