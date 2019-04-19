@@ -1,0 +1,17 @@
+---
+- name: install IUS repositories
+  package:
+    state: present
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install MariaDB
+  package:
+    state: present
+    name:
+      - mariadb101u-server
+
+- name: start/enable MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: yes

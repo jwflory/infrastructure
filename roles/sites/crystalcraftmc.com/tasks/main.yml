@@ -8,28 +8,6 @@
     state: yes
     persistent: yes
 
-- name: (bad hack, not idempotent) erase conflicting mariadb-libs package
-  package:
-    state: absent
-    name: mariadb-libs
-
-- name: add IUS repositories
-  package:
-    state: present
-    name: https://centos7.iuscommunity.org/ius-release.rpm
-
-- name: install MariaDB
-  package:
-    state: present
-    name:
-      - mariadb101u-server
-
-- name: start/enable MariaDB
-  service:
-    name: mariadb
-    state: started
-    enabled: yes
-
 - name: create server block root directory
   file:
     state: directory

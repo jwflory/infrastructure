@@ -2,23 +2,6 @@
 # CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
 # For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
 
-- name: (hack) erase conflicting mariadb-libs package
-  package:
-    state: absent
-    name: mariadb-libs
-
-- name: install MariaDB
-  package:
-    state: present
-    name:
-      - mariadb101u-server
-
-- name: start/enable MariaDB
-  service:
-    name: mariadb
-    state: started
-    enabled: yes
-
 - name: create server block root directory
   file:
     state: directory
