@@ -13,6 +13,7 @@
     - sshd
     - yum-cron
     - irc/limnoria
+    - { role: irc/znc, tags: znc }
     - sites/blog.justinwflory.com
     - sites/crystalcraftmc.com
     - sites/horizon.justinwflory.com

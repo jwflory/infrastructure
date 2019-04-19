@@ -1,0 +1,10 @@
+---
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: restart znc
+  service:
+    name: znc
+    state: restarted

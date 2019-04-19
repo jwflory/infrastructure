@@ -1,0 +1,8 @@
+---
+# encrypt this with Ansible Vault before committing!
+
+vault_znc_conf:
+  admin_user:
+    password:
+      hash: "my-hashed-password"
+      salt: "salty-salt"
