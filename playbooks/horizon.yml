@@ -4,18 +4,18 @@
   become: yes
 
   roles:
-    - base/centos-7
-    - firewalld
-    - influxdb
-    - mariadb
-    - nginx
-    - php-fpm
-    - sshd
-    - yum-cron
-    - irc/limnoria
-    - { role: irc/znc, tags: znc }
-    - sites/blog.justinwflory.com
-    - sites/crystalcraftmc.com
-    - sites/horizon.justinwflory.com
-    - sites/i.jwf.io
-    - sites/mirror.justinwflory.com
+    - { role: base/centos-7, tags: base }
+    - { role: firewalld, tags: firewalld }
+    - { role: influxdb, tags: ['influxdb','metrics'] }
+    - { role: mariadb, tags: mariadb }
+    - { role: nginx, tags: php-fpm }
+    - { role: php-fpm, tags: php-fpm }
+    - { role: sshd, tags: sshd }
+    - { role: yum-cron, tags: yum-cron }
+    - { role: irc/limnoria, tags: ['limnoria','irc'] }
+    - { role: irc/znc, tags: ['znc','irc'] }
+    - { role: sites/blog.justinwflory.com, tags: ['blog','sites'] }
+    - { role: sites/crystalcraftmc.com, tags: ['crystalcraftmc','sites'] }
+    - { role: sites/horizon.justinwflory.com, tags: ['horizon','sites'] }
+    - { role: sites/i.jwf.io, tags: ['screenshot','sites'] }
+    - { role: sites/mirror.justinwflory.com, tags: ['mirror','sites'] }
