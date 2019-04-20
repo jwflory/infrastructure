@@ -23,3 +23,6 @@ happinesspackets-stg.fedorainfracloud.org
 [fedora-happinesspackets]
 happinesspackets.fedorainfracloud.org
 happinesspackets-stg.fedorainfracloud.org
+
+[fedora-happinesspackets:vars]
+ansible_user=root
