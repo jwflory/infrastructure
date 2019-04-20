@@ -12,7 +12,7 @@
     mode: 0700
 
 - name: add SSH public key to authorized_keys for target user (~/.ssh/authorized_keys)
-  template: 
+  template:
     src: authorized_keys
     dest: "{{ user_home_dir }}/.ssh/authorized_keys"
     owner: "{{ target_user }}"
@@ -20,7 +20,7 @@
     mode: 0400
 
 - name: configure SSH server (/etc/ssh/sshd_config)
-  template: 
+  template:
     src: sshd_config
     dest: "/etc/ssh/sshd_config"
   notify: restart sshd
