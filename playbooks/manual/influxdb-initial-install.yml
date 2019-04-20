@@ -46,7 +46,6 @@
         password: "{{ influxdb.users.admin.password }}"
         ssl: yes
       with_items:
-        - "{{ influxdb.users.cortana }}"
         - "{{ influxdb.users.derezzed }}"
         - "{{ influxdb.users.estrella }}"
         - "{{ influxdb.users.fossrit }}"
@@ -56,7 +55,6 @@
     - name: add write permissions to default database for host-specific users
       command: "influx -host {{ influxdb.server_fqdn }} -ssl -username {{ influxdb.users.admin.cn }} -password '{{ influxdb.users.admin.password }}' -execute 'GRANT WRITE ON {{ influxdb.databases.default.cn }} TO {{ item.cn }}'"
       with_items:
-        - "{{ influxdb.users.cortana }}"
         - "{{ influxdb.users.derezzed }}"
         - "{{ influxdb.users.estrella }}"
         - "{{ influxdb.users.fossrit }}"

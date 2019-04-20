@@ -11,9 +11,6 @@ influxdb:
     admin:
       cn: admin
       password: "{{ vault_influxdb.users.admin.password }}"
-    cortana:
-      cn: cortana
-      password: "{{ vault_influxdb.users.cortana.password }}"
     derezzed:
       cn: derezzed
       password: "{{ vault_influxdb.users.derezzed.password }}"
