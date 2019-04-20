@@ -1,0 +1,23 @@
+---
+- name: remove package(s) from all CentOS 7.x machines in environment
+  hosts: centos7
+  become: true
+
+  tasks:
+    - name: import global variables
+      include_vars:
+        dir: "{{ inventory_dir }}/group_vars/"
+
+    - name: remove IUS python36u
+      package:
+        state: absent
+        name:
+          - python36u
+          - python36u-pip
+
+    - name: install EPEL python36
+      package:
+        state: present
+        name:
+          - python36
+          - python36-pip
