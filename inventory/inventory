@@ -1,4 +1,3 @@
-derezzed.justinwflory.com
 estrella.justinwflory.com
 horizon.justinwflory.com
 happinesspackets.fedorainfracloud.org
@@ -12,12 +11,10 @@ horizon
 happinesspackets.fedorainfracloud.org
 
 [staging]
-derezzed
 estrella
 happinesspackets-stg.fedorainfracloud.org
 
 [centos7]
-derezzed
 estrella
 horizon
 happinesspackets.fedorainfracloud.org

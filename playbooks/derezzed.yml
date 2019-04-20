@@ -1,9 +1,0 @@
----
-- name: synchronize derezzed
-  hosts: derezzed
-  become: yes
-
-  roles:
-    - base/centos-7
-    - sshd
-    - yum-cron
