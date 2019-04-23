@@ -1,0 +1,6 @@
+---
+duply:
+  max_age: "1M"
+  max_full_backups: 1
+gpg:
+  opts: "--compress-algo=bzip2 --homedir ~/.duply"

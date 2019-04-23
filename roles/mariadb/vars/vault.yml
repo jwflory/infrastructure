@@ -1,0 +1,3 @@
+---
+vault_gpg:
+  passphrase: "some-string"
