@@ -1,3 +1,7 @@
 ---
 target_user: jflory
 user_home_dir: /home/jflory
+
+gpg:
+  keyid: "DD180A699C2CB5D3"
+  passphrase: "{{ vault_gpg.passphrase }}"
