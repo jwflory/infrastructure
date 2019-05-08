@@ -28,7 +28,7 @@
     immediate: yes
     permanent: true
     state: enabled
-  with_items:
+  loop:
     - http
     - https
 
@@ -76,7 +76,7 @@
     group: www-admin
     owner: www-admin
     setype: httpd_sys_content_t
-  with_items:
+  loop:
     - 404.html
     - 50x.html
     - index.html

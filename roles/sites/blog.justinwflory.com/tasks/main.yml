@@ -39,7 +39,7 @@
     owner: www-admin
     seuser: system_u
     setype: httpd_sys_content_t
-  with_items:
+  loop:
     - favicon.ico
 
 - name: nginx - copy blog.justinwflory.com.conf

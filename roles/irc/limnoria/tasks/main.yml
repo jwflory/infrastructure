@@ -30,7 +30,7 @@
     owner: limnoria
     group: limnoria
     seuser: system_u
-  with_items:
+  loop:
     - "{{ bots.fanshawe }}"
 
 - name: install/upgrade limnoria
@@ -54,7 +54,7 @@
     owner: limnoria
     group: limnoria
     seuser: system_u
-  with_items:
+  loop:
     - "{{ bots.fanshawe }}"
   notify:
     - stop limnoria-fanshawe
@@ -68,5 +68,5 @@
     mode: 0644
     seuser: system_u
     setype: systemd_unit_file_t
-  with_items:
+  loop:
     - "{{ bots.fanshawe }}"
