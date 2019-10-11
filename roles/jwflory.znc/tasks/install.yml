@@ -1,0 +1,59 @@
+---
+- name: import Vault-encrypted variables
+  include_vars: vault.yml
+
+- name: install EPEL repository
+  package:
+    state: present
+    name: epel-release
+
+- name: install znc
+  package:
+    state: present
+    name: znc
+
+- name: create znc config directory
+  file:
+    state: directory
+    path: /var/lib/znc/.znc/configs/
+    mode: 0700
+    owner: znc
+    group: znc
+    seuser: system_u
+
+- name: install znc config file
+  template:
+    src: znc.conf
+    dest: /var/lib/znc/.znc/configs/znc.conf
+    force: no
+    mode: 0600
+    owner: znc
+    group: znc
+    seuser: system_u
+
+- name: install znc nginx reverse proxy config
+  template:
+    src: znc-nginx.conf
+    dest: /etc/nginx/conf.d/znc-nginx.conf
+    mode: 0644
+    seuser: system_u
+  notify: restart nginx
+
+- name: add firewall rule for ZNC port
+  firewalld:
+    port: "6697/tcp"
+    immediate: yes
+    permanent: yes
+    state: enabled
+
+- name: add LetsEncrypt renewal hook script
+  template:
+      src: znc-renew-letsencrypt.sh
+      dest: /etc/letsencrypt/renewal-hooks/deploy/znc-renew-letsencrypt.sh
+      mode: 0755
+
+- name: start/enable znc systemd service
+  service:
+    name: znc
+    state: started
+    enabled: yes
