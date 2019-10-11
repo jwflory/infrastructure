@@ -1,0 +1,36 @@
+---
+- name: install znc-buildmod (via znc-devel)
+  package:
+    state: present
+    name: znc-devel
+
+- name: clone CyberShadow/znc-clientbuffer to /tmp/
+  git:
+    repo: https://github.com/CyberShadow/znc-clientbuffer.git
+    dest: /tmp/znc-clientbuffer
+
+- name: compile znc-clientbuffer module
+  command: /usr/bin/znc-buildmod clientbuffer.cpp
+  args:
+    chdir: /tmp/znc-clientbuffer
+    creates: /tmp/znc-clientbuffer/clientbuffer.so
+
+- name: ensure ZNC modules directory exists
+  file:
+    path: /var/lib/znc/.znc/modules
+    state: directory
+    mode: 0700
+    owner: znc
+    group: znc
+    seuser: system_u
+
+- name: copy compiled znc-clientbuffer module to ZNC module directory
+  copy:
+    remote_src: yes
+    src: /tmp/znc-clientbuffer/clientbuffer.so
+    dest: /var/lib/znc/.znc/modules/clientbuffer.so
+    mode: 0700
+    owner: znc
+    group: znc
+    seuser: system_u
+  notify: restart znc
