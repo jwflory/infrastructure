@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+# Script to trigger LetsEncrypt/Certbot renewals as a cron job. This script was
+# written for someone using the `crontabs` package in Fedora/EPEL RPM
+# repositories. You can drop this file into a directory for the interval you
+# want to run it (e.g. /etc/cron.weekly/).
+
+exec certbot renew
+exit 0

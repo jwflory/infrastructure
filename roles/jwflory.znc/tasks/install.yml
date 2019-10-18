@@ -48,9 +48,16 @@
 
 - name: add LetsEncrypt renewal hook script
   template:
-      src: znc-renew-letsencrypt.sh
-      dest: /etc/letsencrypt/renewal-hooks/deploy/znc-renew-letsencrypt.sh
-      mode: 0755
+    src: znc-renew-letsencrypt.sh
+    dest: /etc/letsencrypt/renewal-hooks/deploy/znc-renew-letsencrypt.sh
+    mode: 0755
+
+- name: install crontab for renewing Certbot/LetsEncrypt certificates
+  copy:
+    src: renew_letsencrypt.cron
+    dest: /etc/cron.weekly/renew_letsencrypt.cron
+    mode: 0755
+    seuser: system_u
 
 - name: start/enable znc systemd service
   service:
