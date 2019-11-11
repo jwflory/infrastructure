@@ -1,0 +1,41 @@
+- name: Guarantee the latest version of epel-release is installed
+  package:
+    name: epel-release
+    state: latest
+
+- name: Install /usr/bin/ansible*
+  package:
+    name: ansible
+    state: present
+
+- name: Create directory for cloning git repos
+  file:
+    path: "/git"
+    state: directory
+    mode: 774
+    group: admin
+    seuser: system_u
+
+- name: Create svc_ansible system user to run Ansible playbooks
+  user:
+    name: svc_ansible
+    comment: "system user to run Ansible playbooks"
+    home: /git/ansible
+    generate_ssh_key: yes
+    ssh_key_type: ed25519
+    system: yes
+
+- name: Create home directory for svc_ansible system user
+  file:
+    path: "/git/ansible"
+    state: directory
+    mode: 770
+    owner: svc_ansible
+    group: admin
+    seuser: system_u
+
+- name: Clone Ansible config management repo to svc_ansible home directory
+  git:
+
+
+- name:
