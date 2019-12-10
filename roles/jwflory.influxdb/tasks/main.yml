@@ -1,13 +1,10 @@
 ---
-- name: import global variables
-  include_vars:
-    dir: "{{ inventory_dir }}/group_vars/"
-
 - name: add influxdb.repo to /etc/yum.repos.d/
   copy:
     src: influxdb.repo
     dest: /etc/yum.repos.d/influxdb.repo
     mode: 0644
+    setype: system_conf_t
     seuser: system_u
 
 - name: install influxdb
@@ -27,6 +24,7 @@
     src: influxdb.conf
     dest: /etc/influxdb/influxdb.conf
     mode: 0644
+    setype: etc_t
     seuser: system_u
   notify:
     - restart influxdb
@@ -38,25 +36,25 @@
     mode: 0750
     owner: influxdb
     group: influxdb
+    setype: cert_t
     seuser: system_u
 
 - name: create directory for host-specific certs
   file:
     state: directory
-    path: /usr/lib/influxdb/tls/{{ influxdb.server_fqdn }}/
+    path: "/usr/lib/influxdb/tls/{{ db_fqdn }}/"
     mode: 0750
     owner: influxdb
     group: influxdb
+    setype: cert_t
     seuser: system_u
 
-- name: copy LetsEncrypt certs to InfluxDB TLS certs directory
-  copy:
-    src: "/etc/letsencrypt/live/{{ influxdb.server_fqdn }}/{{ item }}"
-    dest: "/usr/lib/influxdb/tls/{{ influxdb.server_fqdn }}/{{ item }}"
-    remote_src: yes
-    mode: 0400
-    owner: influxdb
-    group: influxdb
+- name: symbolic link LetsEncrypt certs to InfluxDB TLS certs directory
+  # Note: This step requires LetsEncrypt certs to already exist.
+  file:
+    state: link
+    src: "/etc/letsencrypt/live/{{ db_fqdn }}/{{ item }}"
+    dest: "/usr/lib/influxdb/tls/{{ db_fqdn }}/{{ item }}"
     seuser: system_u
   loop:
     - fullchain.pem
