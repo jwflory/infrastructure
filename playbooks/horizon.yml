@@ -6,14 +6,14 @@
   roles:
     - { role: base/centos-7, tags: base }
     - { role: firewalld, tags: firewalld }
-    - { role: influxdb, tags: ['influxdb', 'metrics'] }
+    - { role: jwflory.influxdb, tags: ['influxdb', 'metrics'] }
+    - { role: jwflory.znc, tags: ['znc', 'irc'] }
+    - { role: limnoria, tags: ['limnoria', 'irc'] }
     - { role: mariadb, tags: mariadb }
     - { role: nginx, tags: php-fpm }
     - { role: php-fpm, tags: php-fpm }
     - { role: sshd, tags: sshd }
     - { role: yum-cron, tags: yum-cron }
-    - { role: irc/limnoria, tags: ['limnoria', 'irc'] }
-    - { role: irc/znc, tags: ['znc', 'irc'] }
     - { role: sites/blog.justinwflory.com, tags: ['blog', 'sites'] }
     - { role: sites/crystalcraftmc.com, tags: ['crystalcraftmc', 'sites'] }
     - { role: sites/horizon.justinwflory.com, tags: ['horizon', 'sites'] }
