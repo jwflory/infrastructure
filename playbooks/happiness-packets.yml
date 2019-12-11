@@ -1,6 +1,6 @@
 ---
-- name: synchronize fedora-happinesspackets hosts
-  hosts: fedora-happinesspackets
+- name: synchronize fedora_happinesspackets hosts
+  hosts: fedora_happinesspackets
   become: yes
 
   roles:

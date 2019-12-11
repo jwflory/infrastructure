@@ -20,9 +20,9 @@ horizon
 happinesspackets.fedorainfracloud.org
 happinesspackets-stg.fedorainfracloud.org
 
-[fedora-happinesspackets]
+[fedora_happinesspackets]
 happinesspackets.fedorainfracloud.org
 happinesspackets-stg.fedorainfracloud.org
 
-[fedora-happinesspackets:vars]
+[fedora_happinesspackets:vars]
 ansible_user=root
