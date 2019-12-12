@@ -2,7 +2,7 @@
 # CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
 # For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
 
-- name: create server block root directory
+- name: create server block root directory /var/www/blog.justinwflory.com/
   file:
     state: directory
     path: "/var/www/blog.justinwflory.com/"
@@ -10,7 +10,7 @@
     seuser: system_u
     setype: httpd_sys_content_t
 
-- name: nginx - create html directory
+- name: create html directory
   file:
     state: directory
     path: "/var/www/blog.justinwflory.com/html/"
@@ -20,7 +20,7 @@
     seuser: system_u
     setype: httpd_sys_rw_content_t
 
-- name: nginx - create logs directory
+- name: create nginx logs directory
   file:
     state: directory
     path: "/var/www/blog.justinwflory.com/logs/"
@@ -30,7 +30,7 @@
     seuser: system_u
     setype: httpd_log_t
 
-- name: copy favicon.ico
+- name: www - copy favicon.ico
   copy:
     src: "{{ item }}"
     dest: "/var/www/blog.justinwflory.com/html/{{ item }}"
