@@ -1,28 +1,15 @@
 estrella.justinwflory.com
 horizon.justinwflory.com
-happinesspackets.fedorainfracloud.org
-happinesspackets-stg.fedorainfracloud.org
 
 [dev]
 127.0.0.1 ansible_connection=local
 
 [production]
 horizon
-happinesspackets.fedorainfracloud.org
 
 [staging]
 estrella
-happinesspackets-stg.fedorainfracloud.org
 
 [centos7]
 estrella
 horizon
-happinesspackets.fedorainfracloud.org
-happinesspackets-stg.fedorainfracloud.org
-
-[fedora_happinesspackets]
-happinesspackets.fedorainfracloud.org
-happinesspackets-stg.fedorainfracloud.org
-
-[fedora_happinesspackets:vars]
-ansible_user=root
