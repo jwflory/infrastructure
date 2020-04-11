@@ -1,5 +1,0 @@
----
-- name: restart influxdb
-  service:
-    state: restarted
-    name: influxdb
