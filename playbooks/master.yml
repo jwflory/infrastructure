@@ -1,4 +1,2 @@
 ---
-- import_playbook: estrella.yml
-- import_playbook: horizon.yml
-- import_playbook: happiness-packets.yml
+- import_playbook: hosts/horizon.yml

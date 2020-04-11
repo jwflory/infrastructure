@@ -1,9 +1,0 @@
----
-- name: synchronize fedora_happinesspackets hosts
-  hosts: fedora_happinesspackets
-  become: yes
-
-  roles:
-    - { role: base/centos-7, tags: base }
-    - { role: firewalld, tags: firewalld }
-    - { role: yum-cron, tags: yum-cron }

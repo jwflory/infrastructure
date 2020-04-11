@@ -1,15 +1,1 @@
-estrella.justinwflory.com
-horizon.justinwflory.com
-
-[dev]
-127.0.0.1 ansible_connection=local
-
-[production]
-horizon
-
-[staging]
-estrella
-
-[centos7]
-estrella
-horizon
+horizon.jwf.io
