@@ -19,8 +19,8 @@
     - { role: php-fpm, tags: php-fpm }
     - { role: sshd, tags: sshd }
     - { role: yum-cron, tags: yum-cron }
-    - { role: sites/blog.justinwflory.com, tags: ['blog', 'sites'] }
+    - { role: sites/blog.jwf.io, tags: ['blog', 'sites'] }
     - { role: sites/crystalcraftmc.com, tags: ['crystalcraftmc', 'sites'] }
-    - { role: sites/horizon.justinwflory.com, tags: ['horizon', 'sites'] }
+    - { role: sites/horizon.jwf.io, tags: ['horizon', 'sites'] }
     - { role: sites/i.jwf.io, tags: ['screenshot', 'sites'] }
-    - { role: sites/mirror.justinwflory.com, tags: ['mirror', 'sites'] }
+    - { role: sites/mirror.jwf.io, tags: ['mirror', 'sites'] }

@@ -6,6 +6,6 @@
 # To be run as root only.
 #
 
-find /var/www/blog.justinwflory.com/public_html/ -type d -exec chmod 775 {} \;
-find /var/www/blog.justinwflory.com/public_html/ -type f -exec chmod 664 {} \;
-chcon -t httpd_sys_rw_content_t /var/www/blog.justinwflory.com/public_html/wp-content/ -R
+find /var/www/blog.jwf.io/public_html/ -type d -exec chmod 775 {} \;
+find /var/www/blog.jwf.io/public_html/ -type f -exec chmod 664 {} \;
+chcon -t httpd_sys_rw_content_t /var/www/blog.jwf.io/public_html/wp-content/ -R

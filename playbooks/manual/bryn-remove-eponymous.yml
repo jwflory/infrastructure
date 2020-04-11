@@ -1,5 +1,5 @@
 ---
-- name: remove and clean up bryn.justinwflory.com from bryn
+- name: remove and clean up bryn.jwf.io from bryn
   hosts: bryn
   become: yes
 
@@ -7,14 +7,14 @@
     - name: remove server block root directory
       file:
         state: absent
-        path: "/var/www/bryn.justinwflory.com/"
+        path: "/var/www/bryn.jwf.io/"
 
     - name: remove unused TLS certificates
       file:
         state: absent
-        path: "/etc/pki/tls/certs/bryn_justinwflory_com/"
+        path: "/etc/pki/tls/certs/bryn_jwf.io/"
 
     - name: remove nginx config
       file:
         state: absent
-        path: "/etc/nginx/conf.d/bryn.justinwflory.com.conf"
+        path: "/etc/nginx/conf.d/bryn.jwf.io.conf"
