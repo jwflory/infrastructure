@@ -8,8 +8,3 @@
   service:
     name: znc
     state: restarted
-
-- name: remove znc-clientbuffer git repo
-  file:
-    path: /tmp/znc-clientbuffer
-    state: absent
