@@ -5,7 +5,7 @@
 - name: create server block root directory
   file:
     state: directory
-    path: "/var/www/mirror.justinwflory.com/"
+    path: "/var/www/mirror.jwf.io/"
     mode: 0755
     seuser: system_u
     setype: httpd_sys_content_t
@@ -13,7 +13,7 @@
 - name: nginx - create html directory
   file:
     state: directory
-    path: "/var/www/mirror.justinwflory.com/html/"
+    path: "/var/www/mirror.jwf.io/html/"
     mode: 0775
     group: www-admin
     owner: www-admin
@@ -23,7 +23,7 @@
 - name: nginx - create logs directory
   file:
     state: directory
-    path: "/var/www/mirror.justinwflory.com/logs/"
+    path: "/var/www/mirror.jwf.io/logs/"
     mode: 0755
     group: nginx
     owner: nginx
@@ -33,7 +33,7 @@
 - name: copy index.html and favicon.ico
   copy:
     src: "{{ item }}"
-    dest: "/var/www/mirror.justinwflory.com/html/{{ item }}"
+    dest: "/var/www/mirror.jwf.io/html/{{ item }}"
     mode: 0664
     group: www-admin
     owner: www-admin
@@ -45,17 +45,17 @@
     - blank.gif
     - folder.gif
 
-- name: nginx - copy mirror.justinwflory.com.conf
+- name: nginx - copy mirror.jwf.io.conf
   copy:
-    src: mirror.justinwflory.com.conf
-    dest: "/etc/nginx/conf.d/mirror.justinwflory.com.conf"
+    src: mirror.jwf.io.conf
+    dest: "/etc/nginx/conf.d/mirror.jwf.io.conf"
     mode: 0644
   notify: restart nginx
 
-- name: create public directory in mirror.justinwflory.com root directory
+- name: create public directory in mirror.jwf.io root directory
   file:
     state: directory
-    path: "/var/www/mirror.justinwflory.com/html/pub/"
+    path: "/var/www/mirror.jwf.io/html/pub/"
     mode: 0775
     group: www-admin
     owner: www-admin
