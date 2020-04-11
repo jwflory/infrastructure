@@ -1,10 +1,10 @@
 ---
-- name: install yum-cron
+- name: install/upgrade yum-cron
   package:
     state: latest
     name: yum-cron
 
-- name: configure yum-cron (/etc/yum/yum-cron.conf)
+- name: push /etc/yum/yum-cron.conf
   template:
     src: yum-cron.conf
     dest: /etc/yum/yum-cron.conf
