@@ -1,6 +1,6 @@
 ---
 - name: synchronize horizon
-  hosts: horizon
+  hosts: horizon.jwf.io
   become: yes
 
   roles:
