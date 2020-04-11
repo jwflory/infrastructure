@@ -1,6 +1,6 @@
 ---
-- name: bryn - export all data for single WordPress installation
-  hosts: bryn
+- name: export all data for a single WordPress installation
+  hosts: wordpress
   become: yes
 
   vars:
@@ -16,6 +16,7 @@
     mysql_user: wordpress
     site_dir: "/var/www/{{ site_fqdn }}"
     site_fqdn: blog.jwf.io
+    target_group: jflory
     target_user: jflory
     user_home_dir: "/home/jflory"
 
@@ -62,5 +63,5 @@
         format: zip
         remove: yes
         owner: "{{ target_user }}"
-        group: "{{ target_user }}"
+        group: "{{ target_group }}"
         seuser: system_u
