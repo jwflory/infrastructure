@@ -3,6 +3,12 @@
   hosts: horizon.jwf.io
   become: yes
 
+  vars:
+    target_group: jflory
+    target_user: jflory
+    target_user_name: Justin W. Flory
+    user_home_dir: /home/jflory
+
   roles:
     - { role: base/centos-7, tags: base }
     - { role: firewalld, tags: firewalld }
