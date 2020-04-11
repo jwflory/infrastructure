@@ -15,7 +15,7 @@
           3264636539313639326431313263653035303136633033643239
     mysql_user: wordpress
     site_dir: "/var/www/{{ site_fqdn }}"
-    site_fqdn: blog.justinwflory.com
+    site_fqdn: blog.jwf.io
     target_user: jflory
     user_home_dir: "/home/jflory"
 

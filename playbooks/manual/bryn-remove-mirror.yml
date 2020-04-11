@@ -1,5 +1,5 @@
 ---
-- name: remove and clean up mirror.justinwflory.com from bryn
+- name: remove and clean up mirror.jwf.io from bryn
   hosts: bryn
   become: yes
 
@@ -7,7 +7,7 @@
     - name: remove server block root directory
       file:
         state: absent
-        path: "/var/www/mirror.justinwflory.com/"
+        path: "/var/www/mirror.jwf.io/"
 
     - name: remove unused TLS certificates
       file:
@@ -17,4 +17,4 @@
     - name: remove nginx config
       file:
         state: absent
-        path: "/etc/nginx/conf.d/mirror.justinwflory.com.conf"
+        path: "/etc/nginx/conf.d/mirror.jwf.io.conf"
