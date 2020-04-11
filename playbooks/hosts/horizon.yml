@@ -12,7 +12,6 @@
   roles:
     - { role: base/centos-7, tags: base }
     - { role: firewalld, tags: firewalld }
-    - { role: jwflory.influxdb, tags: ['influxdb', 'metrics'] }
     - { role: jwflory.znc, tags: ['znc', 'irc'] }
     - { role: limnoria, tags: ['limnoria', 'irc'] }
     - { role: mariadb, tags: mariadb }
