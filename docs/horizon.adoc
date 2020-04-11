@@ -1,4 +1,4 @@
-= Logbook: horizon.justinwflory.com
+= Logbook: horizon.jwf.io
 
 Running logbook of documentation notes for Horizon.
 
