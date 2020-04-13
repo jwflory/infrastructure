@@ -1,0 +1,26 @@
+= Infrastructure logbook: Fedora Happiness Packets (FHP)
+
+This page provides notes on the deployment of the https://pagure.io/fedora-commops/fedora-happiness-packets[Fedora Happiness Packets] project.
+Eventually, these notes should be reflected in project documentation.
+
+
+== Dependencies
+
+"Dependencies" refer to RPM packages that must be installed for the application to work.
+Usually these are required when running `pip install` in a later step.
+Note that *Python 3 is required* to deploy the application.
+
+* *Packages*:
+** `epel-release`
+** `openssl-devel`
+** `python36`
+** `python36-devel`
+** `python36-pip`
+
+
+== Existing staging deployment
+
+These notes document how the FHP staging deployment is set up:
+
+* Production app running in Python virtualenvs on staging server
+* Uses Gunicorn web server to run application (manage with `systemctl {status,restart,start,stop} gunicorn`)
