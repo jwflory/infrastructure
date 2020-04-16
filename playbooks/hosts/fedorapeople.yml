@@ -1,0 +1,12 @@
+---
+- name: synchronize jflory7.fedoraproject.org
+  hosts: fedorapeople
+
+  vars:
+    target_group: jflory7
+    target_user: jflory7
+    target_user_name: Justin W. Flory
+    user_home_dir: /home/fedora/jflory7
+
+  roles:
+    - { role: sites/jflory7.fedorapeople.org, tags: ['fedorapeople', 'sites'] }
