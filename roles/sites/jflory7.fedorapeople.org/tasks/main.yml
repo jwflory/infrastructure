@@ -1,0 +1,26 @@
+---
+- name: planet - push planet config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ user_home_dir }}/.{{item}}"
+    mode: 0644
+    owner: "{{ target_user }}"
+    group: "{{ target_group }}"
+    seuser: system_u
+  loop:
+    - planet
+    - planet.summer-coding
+
+- name: www - push root index files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ user_home_dir }}/public_html/{{ item }}"
+    mode: 0644
+    owner: "{{ target_user }}"
+    group: "{{ target_group }}"
+    seuser: system_u
+  loop:
+    - favicon.ico
+    - index.html
+    - keybase.txt
+    - me.jpg

@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/jflory
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jflory7.fedorapeople.org
+  * I am jflory (https://keybase.io/jflory) on keybase.
+  * I have a public key ASDGezdGCzFOWs8tu_fCH94ZW2CDLCylpHivECBw0UIZjQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101c11538d19842945489bbe8c569ec5abfb62cc223afec90df11d66c6f5e75a3eb0a",
+            "host": "keybase.io",
+            "kid": "0120c67b37460b314e5acf2dbbf7c21fde195b60832c2ca5a478af102070d142198d0a",
+            "uid": "5e779721ff4dcad7141df9ff68caa600",
+            "username": "jflory"
+        },
+        "service": {
+            "hostname": "jflory7.fedorapeople.org",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.16"
+    },
+    "ctime": 1481530143,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1481529980,
+        "hash": "75dc00d906c80ce096ecb8ca2469dcc9b888384c209c748bc2072e0d16b8fe546651904809eadebfd418239369a88f24f79a2d58006cb512427003bcf7483622",
+        "seqno": 757073
+    },
+    "prev": "df0313066ab2eaf42541022f289ddb89cc63cb74f75b7536fc89f8c67e90e338",
+    "seqno": 52,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+g6Rib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgxns3RgsxTlrPLbv3wh/eGVtggywspaR4rxAgcNFCGY0Kp3BheWxvYWTFAv97ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxYzExNTM4ZDE5ODQyOTQ1NDg5YmJlOGM1NjllYzVhYmZiNjJjYzIyM2FmZWM5MGRmMTFkNjZjNmY1ZTc1YTNlYjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYzY3YjM3NDYwYjMxNGU1YWNmMmRiYmY3YzIxZmRlMTk1YjYwODMyYzJjYTVhNDc4YWYxMDIwNzBkMTQyMTk4ZDBhIiwidWlkIjoiNWU3Nzk3MjFmZjRkY2FkNzE0MWRmOWZmNjhjYWE2MDAiLCJ1c2VybmFtZSI6ImpmbG9yeSJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiamZsb3J5Ny5mZWRvcmFwZW9wbGUub3JnIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTYifSwiY3RpbWUiOjE0ODE1MzAxNDMsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ4MTUyOTk4MCwiaGFzaCI6Ijc1ZGMwMGQ5MDZjODBjZTA5NmVjYjhjYTI0NjlkY2M5Yjg4ODM4NGMyMDljNzQ4YmMyMDcyZTBkMTZiOGZlNTQ2NjUxOTA0ODA5ZWFkZWJmZDQxODIzOTM2OWE4OGYyNGY3OWEyZDU4MDA2Y2I1MTI0MjcwMDNiY2Y3NDgzNjIyIiwic2Vxbm8iOjc1NzA3M30sInByZXYiOiJkZjAzMTMwNjZhYjJlYWY0MjU0MTAyMmYyODlkZGI4OWNjNjNjYjc0Zjc1Yjc1MzZmYzg5ZjhjNjdlOTBlMzM4Iiwic2Vxbm8iOjUyLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQFs0eegHZoUJT9nAUhIoOQGCBx+jhwM3b+cKdetcvvMyig8+NS0NU7o82DlZk56IjsRCncEkmIhjBRwYMVg5BAOoc2lnX3R5cGUgo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jflory
+
+==================================================================
