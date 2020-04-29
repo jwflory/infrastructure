@@ -47,9 +47,9 @@ SyslogFacility AUTHPRIV
 #LogLevel INFO
 
 # Authentication:
-AllowUsers jflory
+AllowUsers {{ sshd.authentication.allow_users }}
 #LoginGraceTime 2m
-PermitRootLogin no
+PermitRootLogin {{ sshd.authentication.permit_root_login }}
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
@@ -76,7 +76,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 # To disable tunneled clear text passwords, change to no here!
 #PasswordAuthentication yes
 #PermitEmptyPasswords no
-PasswordAuthentication no
+PasswordAuthentication {{ sshd.authentication.password_authentication }}
 
 # Change to no to disable s/key passwords
 #ChallengeResponseAuthentication yes
