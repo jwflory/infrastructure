@@ -36,19 +36,26 @@
     seuser: system_u
     setype: httpd_log_t
 
-- name: copy favicon.ico
+- name: push favicon.ico
   copy:
-    src: "{{ item }}"
-    dest: "/var/www/{{ site_fqdn }}/html/{{ item }}"
+    src: "favicon.ico"
+    dest: "/var/www/{{ site_fqdn }}/html/favicon.ico"
     mode: 0664
     group: www-admin
     owner: www-admin
     seuser: system_u
     setype: httpd_sys_content_t
-  loop:
-    - favicon.ico
 
-- name: nginx - copy crystalcraftmc.com.conf
+- name: set php-fpm as owner of html/internal_data/sitemaps directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/html/internal_data/sitemaps/"
+    mode: 0755
+    owner: php-fpm
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - push crystalcraftmc.com.conf
   template:
     src: "{{ site_fqdn }}.conf"
     dest: "/etc/nginx/conf.d/{{ site_fqdn }}.conf"
