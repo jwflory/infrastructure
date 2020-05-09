@@ -32,15 +32,21 @@
 
 - name: www - copy favicon.ico
   copy:
-    src: "{{ item }}"
-    dest: "/var/www/blog.jwf.io/html/{{ item }}"
+    src: "favicon.ico"
+    dest: "/var/www/blog.jwf.io/html/favicon.ico"
     mode: 0664
     group: www-admin
     owner: www-admin
     seuser: system_u
     setype: httpd_sys_content_t
-  loop:
-    - favicon.ico
+
+- name: www - recursively set html directory permissions
+  file:
+    state: directory
+    path: "/var/www/blog.jwf.io/html/"
+    recurse: yes
+    mode: g+rw
+    group: www-admin
 
 - name: nginx - copy blog.jwf.io.conf
   copy:
