@@ -2,6 +2,13 @@
 # CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
 # For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
 
+- name: install WordPress PHP dependencies
+  package:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - php73-intl
+
 - name: create server block root directory /var/www/blog.jwf.io/
   file:
     state: directory
