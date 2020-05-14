@@ -15,7 +15,7 @@
     - { role: jwflory.znc, tags: ['znc', 'irc'] }
     - { role: limnoria, tags: ['limnoria', 'irc'] }
     - { role: mariadb, tags: mariadb }
-    - { role: nginx, tags: php-fpm }
+    - { role: nginx, tags: ['nginx', 'php-fpm'] }
     - { role: php-fpm, tags: php-fpm }
     - { role: sshd, tags: sshd }
     - { role: yum-cron, tags: yum-cron }
