@@ -4,11 +4,10 @@
     state: present
     name: https://centos7.iuscommunity.org/ius-release.rpm
 
-- name: install MariaDB
+- name: install mariadb-server v10.3
   package:
     state: present
-    name:
-      - mariadb101u-server
+    name: mariadb103-server
 
 - name: start/enable MariaDB
   service:
