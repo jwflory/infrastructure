@@ -6,21 +6,20 @@
       - epel-release
       - https://centos7.iuscommunity.org/ius-release.rpm
 
-- name: install PHP 7.2
+- name: install PHP 7.3
   package:
     state: present
     name:
-      - php71u-bcmath
-      - php71u-common
-      - php71u-dba
-      - php71u-fpm
-      - php71u-gd
-      - php71u-json
-      - php71u-mbstring
-      - php71u-mcrypt
-      - php71u-mysqlnd
-      - php71u-pecl-imagick
-      - php71u-xml
+      - php73-bcmath
+      - php73-common
+      - php73-dba
+      - php73-fpm
+      - php73-gd
+      - php73-json
+      - php73-mbstring
+      - php73-mysqlnd
+      - php73-pecl-imagick
+      - php73-xml
 
 - name: php - copy php.ini
   copy:
