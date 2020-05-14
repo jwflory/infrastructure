@@ -20,3 +20,12 @@
     - http
     - https
 
+- name: push dhparam file
+  get_url:
+    url: https://ssl-config.mozilla.org/ffdhe4096.txt
+    dest: /etc/nginx/dhparam4096.txt
+    mode: 0644
+    owner: root
+    group: root
+    setype: httpd_config_t
+    seuser: system_u
