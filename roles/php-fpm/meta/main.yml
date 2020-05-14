@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: php-fpm
+  author: Justin W. Flory
+  description: Configure php-fpm service on CentOS/RHEL Server
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+
+  galaxy_tags:
+    - linux
+    - centos
+    - rhel
+    - server
+    - php
+    - systemd
+
+dependencies:
+  - role: nginx
