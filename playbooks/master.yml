@@ -1,3 +1,4 @@
 ---
 - import_playbook: hosts/fedorapeople.org
 - import_playbook: hosts/horizon.yml
+- import_playbook: hosts/jubilee.yml

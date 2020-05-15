@@ -1,0 +1,20 @@
+---
+- name: synchronize jubilee
+  hosts: jubilee.jwf.io
+  become: yes
+
+  vars:
+    target_group: jwf
+    target_user: jwf
+    target_user_name: Justin W. Flory
+    user_home_dir: /home/jwf
+
+  roles:
+    - { role: base/centos-7, tags: base }
+    - { role: firewalld, tags: firewalld }
+    - { role: mariadb, tags: mariadb }
+    - { role: php-fpm, tags: php-fpm }
+    - { role: sshd, tags: sshd }
+    - { role: yum-cron, tags: yum-cron }
+    - { role: sites/jubilee.jwf.io, tags: ['jubilee', 'sites'] }
+    # - { role: sites/crystalcraftmc.com, tags: ['crystalcraftmc', 'sites'] }
