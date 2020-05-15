@@ -37,6 +37,15 @@
     dest: "/etc/php.ini"
     mode: 0644
     seuser: system_u
+  notify: restart php-fpm
+
+- name: create php-fpm user
+  user:
+    name: php-fpm
+    home: /var/lib/php/fpm
+    shell: /sbin/nologin
+    comment: "System user for php-fpm daemon - not for human use"
+    system: yes
 
 - name: php-fpm - push php-fpm.conf
   copy:
@@ -44,6 +53,7 @@
     dest: "/etc/php-fpm.conf"
     mode: 0644
     seuser: system_u
+  notify: restart php-fpm
 
 - name: php-fpm - push www.conf
   copy:
