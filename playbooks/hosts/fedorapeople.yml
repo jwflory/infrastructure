@@ -1,6 +1,6 @@
 ---
 - name: synchronize jflory7.fedoraproject.org
-  hosts: fedorapeople
+  hosts: fedorapeople.org
 
   vars:
     target_group: jflory7
