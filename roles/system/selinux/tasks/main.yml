@@ -1,0 +1,19 @@
+---
+- name: install SELinux policies
+  package:
+    state: present
+    name:
+      - selinux-policy
+      - selinux-policy-targeted
+      - fail2ban-selinux
+      - container-selinux
+
+- name: install/upgrade setools
+  package:
+    state: latest
+    name: setools
+
+- name: set SELinux to enforcing
+  selinux:
+    policy: targeted
+    state: enforcing

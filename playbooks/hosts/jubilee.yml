@@ -10,7 +10,7 @@
     user_home_dir: /home/jwf
 
   roles:
-    - { role: base/centos-7, tags: base }
+    - { role: system/selinux, tags: ['selinux', 'system'] }
     - { role: firewalld, tags: firewalld }
     - { role: mariadb, tags: mariadb }
     - { role: php-fpm, tags: php-fpm }

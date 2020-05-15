@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: system/selinux
+  author: Justin W. Flory
+  description: Basic setup and configuration of SELinux on CentOS/RHEL Server
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+        - 7
+
+  galaxy_tags:
+    - linux
+    - centos
+    - rhel
+    - server
+    - selinux
+
+dependencies:
+  - role: repos/epel

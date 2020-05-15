@@ -10,7 +10,7 @@
     user_home_dir: /home/jflory
 
   roles:
-    - { role: base/centos-7, tags: base }
+    - { role: system/selinux, tags: ['selinux', 'system'] }
     - { role: firewalld, tags: firewalld }
     - { role: jwflory.znc, tags: ['znc', 'irc'] }
     - { role: limnoria, tags: ['limnoria', 'irc'] }
