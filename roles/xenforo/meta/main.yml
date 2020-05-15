@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  role_name: xenforo
+  author: Justin W. Flory
+  description: Configure XenForo v1.x.x web forums on CentOS/RHEL Server
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+
+  galaxy_tags:
+    - linux
+    - centos
+    - rhel
+    - server
+    - nginx
+    - php
+    - xenforo
+    - forum
+
+dependencies:
+  - role: nginx
+  - role: php-fpm

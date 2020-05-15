@@ -17,4 +17,4 @@
     - { role: sshd, tags: sshd }
     - { role: yum-cron, tags: yum-cron }
     - { role: sites/jubilee.jwf.io, tags: ['jubilee', 'sites'] }
-    # - { role: sites/crystalcraftmc.com, tags: ['crystalcraftmc', 'sites'] }
+    # - { role: xenforo, tags: ['xenforo', 'crystalcraftmc', 'sites'] }
