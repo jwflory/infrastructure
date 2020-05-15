@@ -16,4 +16,10 @@
     - { role: php-fpm, tags: php-fpm }
     - { role: sshd, tags: sshd }
     - { role: sites/jubilee.jwf.io, tags: ['jubilee', 'sites'] }
-    # - { role: xenforo, tags: ['xenforo', 'crystalcraftmc', 'sites'] }
+    - role: xenforo
+      vars:
+        site_fqdn: crystalcraftmc.com
+      tags:
+        - 'xenforo'
+        - 'crystalcraftmc'
+        - 'sites'

@@ -1,0 +1,11 @@
+---
+- name: push favicon.ico
+  copy:
+    src: "favicon.ico"
+    dest: "/var/www/{{ site_fqdn }}/html/favicon.ico"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
