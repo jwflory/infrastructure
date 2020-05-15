@@ -10,6 +10,5 @@
   loop:
     - 404.html
     - 50x.html
-    - index.html
     - nginx-logo.png
     - poweredby.png
