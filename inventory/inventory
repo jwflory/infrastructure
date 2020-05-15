@@ -1,9 +1,9 @@
-fedorapeople
-horizon.jwf.io
-jubilee.jwf.io
+fedorapeople.org    ansible_ssh_user=jflory7
+horizon.jwf.io      ansible_ssh_user=jflory
+jubilee.jwf.io      ansible_ssh_user=jwf
 
 [wordpress]
-horizon.jwf.io
+horizon.jwf.io      ansible_ssh_user=jflory
 
 [xenforo]
-jubilee.jwf.io
+jubilee.jwf.io      ansible_ssh_user=jwf
