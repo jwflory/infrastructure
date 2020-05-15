@@ -1,16 +1,22 @@
 ---
-- name: install IUS repositories
-  package:
-    state: present
-    name: https://centos7.iuscommunity.org/ius-release.rpm
-
-- name: install mariadb-server v10.3
+- name: "RedHat 7 - install mariadb-server v10.3 from IUS"
   package:
     state: present
     name: mariadb103-server
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "7"
 
-- name: start/enable MariaDB
+- name: "RedHat 8 - install mariadb-server AppStream"
+  dnf:
+    state: present
+    name: '@mariadb/server'
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "8"
+
+- name: start/enable mariadb.service
   service:
-    name: mariadb
+    name: mariadb.service
     state: started
     enabled: yes

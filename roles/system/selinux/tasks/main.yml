@@ -5,8 +5,15 @@
     name:
       - selinux-policy
       - selinux-policy-targeted
-      - fail2ban-selinux
       - container-selinux
+
+- name: RedHat 8 - install fail2ban-selinux
+  package:
+    state: present
+    name: fail2ban-selinux
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "8"
 
 - name: install/upgrade setools
   package:

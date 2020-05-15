@@ -10,6 +10,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
+        - 8
         - 7
 
   galaxy_tags:
@@ -22,4 +23,3 @@ galaxy_info:
 
 dependencies:
   - role: repos/epel
-  - role: repos/ius

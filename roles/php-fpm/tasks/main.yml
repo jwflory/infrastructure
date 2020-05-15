@@ -1,5 +1,5 @@
 ---
-- name: install PHP 7.3
+- name: RedHat 7 - install PHP 7.3
   package:
     state: present
     name:
@@ -13,22 +13,39 @@
       - php73-mysqlnd
       - php73-pecl-imagick
       - php73-xml
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "7"
 
-- name: php - copy php.ini
+- name: RedHat 8 - install PHP 7.2
+  dnf:
+    state: present
+    name:
+      - '@php:7.2'
+      - php-bcmath
+      - php-dba
+      - php-gd
+      - php-mysqlnd
+      # - php-pecl-imagick
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "8"
+
+- name: php - push php.ini
   copy:
     src: php.ini
     dest: "/etc/php.ini"
     mode: 0644
     seuser: system_u
 
-- name: php-fpm - copy php-fpm.conf
+- name: php-fpm - push php-fpm.conf
   copy:
     src: php-fpm.conf
     dest: "/etc/php-fpm.conf"
     mode: 0644
     seuser: system_u
 
-- name: php-fpm - copy www.conf
+- name: php-fpm - push www.conf
   copy:
     src: www.conf
     dest: "/etc/php-fpm.d/www.conf"
@@ -36,7 +53,7 @@
     seuser: system_u
   notify: restart php-fpm
 
-- name: nginx - copy nginx-php-fpm.conf
+- name: nginx - push nginx-php-fpm.conf
   copy:
     src: nginx-php-fpm.conf
     dest: "/etc/nginx/conf.d/php-fpm.conf"

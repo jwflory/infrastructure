@@ -10,6 +10,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
+        - 8
         - 7
 
   galaxy_tags:
@@ -24,3 +25,6 @@ galaxy_info:
 dependencies:
   - role: repos/epel
   - role: repos/ius
+    when:
+      - ansible_facts['os_family'] == "RedHat"
+      - ansible_facts['distribution_major_version'] == "7"

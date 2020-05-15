@@ -15,6 +15,5 @@
     - { role: mariadb, tags: mariadb }
     - { role: php-fpm, tags: php-fpm }
     - { role: sshd, tags: sshd }
-    - { role: yum-cron, tags: yum-cron }
     - { role: sites/jubilee.jwf.io, tags: ['jubilee', 'sites'] }
     # - { role: xenforo, tags: ['xenforo', 'crystalcraftmc', 'sites'] }
