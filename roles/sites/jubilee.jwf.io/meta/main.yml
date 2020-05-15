@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: sites/jubilee.jwf.io
+  author: Justin W. Flory
+  description: Set up the jubilee.jwf.io default site on an NGINX server
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+        - 7
+
+  galaxy_tags:
+    - linux
+    - centos
+    - rhel
+    - server
+    - nginx
+
+dependencies:
+  - role: nginx
