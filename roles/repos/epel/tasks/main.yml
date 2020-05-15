@@ -1,0 +1,14 @@
+---
+- name: add/upgrade EPEL repository
+  package:
+    state: latest
+    name:
+      - epel-release
+      - https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install base EPEL packages
+  package:
+    state: present
+    name:
+      - certbot
+      - duply

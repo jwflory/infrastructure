@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  role_name: php-fpm
+  role_name: nginx
   author: Justin W. Flory
-  description: Configure php-fpm service on CentOS/RHEL Server
+  description: Configure nginx service on CentOS/RHEL Server
   license: BSD-3-Clause
 
   min_ansible_version: 2.9
@@ -17,10 +17,9 @@ galaxy_info:
     - centos
     - rhel
     - server
-    - php
+    - nginx
     - systemd
 
 dependencies:
   - role: repos/epel
   - role: repos/ius
-  - role: nginx

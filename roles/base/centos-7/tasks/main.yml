@@ -1,23 +1,8 @@
 ---
-- name: add/upgrade EPEL and IUS repositories
+- name: install/upgrade htop
   package:
     state: latest
-    name:
-      - epel-release
-      - https://centos7.iuscommunity.org/ius-release.rpm
-
-- name: install base packages
-  package:
-    state: present
-    name:
-      - https://repos.influxdata.com/centos/7Server/x86_64/stable/telegraf-1.8.0-1.x86_64.rpm
-      - certbot
-      - duply
-      - git
-      - htop
-      - python36
-      - python36-pip
-      - yum-plugin-replace
+    name: htop
 
 - name: enable SELinux
   selinux:

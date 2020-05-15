@@ -18,4 +18,5 @@ galaxy_info:
   - rhel
   - znc
 
-dependencies: []
+dependencies:
+  - role: repos/epel

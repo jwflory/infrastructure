@@ -1,11 +1,4 @@
 ---
-- name: install/upgrade IUS repositories
-  package:
-    state: latest
-    name:
-      - epel-release
-      - https://centos7.iuscommunity.org/ius-release.rpm
-
 - name: install PHP 7.3
   package:
     state: present

@@ -1,0 +1,13 @@
+---
+- name: add/upgrade IUS repository
+  package:
+    state: latest
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+
+- name: install base IUS packages
+  package:
+    state: present
+    name:
+      - python36
+      - python36-pip
+      - yum-plugin-replace

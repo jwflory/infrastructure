@@ -1,13 +1,4 @@
 ---
-# https://mariadb.com/kb/en/library/upgrading-from-mariadb-55-to-mariadb-100/
-# - mariadb101u-server
-
-- name: install/upgrade epel-release (CentOS only)
-  when: ansible_distribution == 'CentOS'
-  package:
-    state: latest
-    name: epel-release
-
 - name: install nginx
   package:
     state: present

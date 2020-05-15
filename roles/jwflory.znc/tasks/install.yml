@@ -2,11 +2,6 @@
 - name: import Vault-encrypted variables
   include_vars: vault.yml
 
-- name: install EPEL repository
-  package:
-    state: present
-    name: epel-release
-
 - name: install znc
   package:
     state: present
