@@ -15,6 +15,17 @@
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version'] == "8"
 
+- name: push 999-custom.cnf to /etc/my.cnf.d/
+  template:
+    src: 999-custom.cnf
+    dest: /etc/my.cnf.d/999-custom.cnf
+    mode: 0644
+    owner: root
+    group: root
+    setype: mysqld_etc_t
+    seuser: system_u
+  notify: restart mariadb.service
+
 - name: start/enable mariadb.service
   service:
     name: mariadb.service

@@ -1,0 +1,15 @@
+[mysqld]
+{% if ansible_hostname == "crystalcraftmc-web" %}
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                             #
+# crystalcraftmc-web: Optimize InnoDB to run on a server with less than 1GB   #
+# of memory. A buffer pool size under 1GB affects other InnoDB options.       #
+#                                                                             #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Commit ~90% of total system memory
+innodb_buffer_pool_size=725M
+
+# https://web.archive.org/web/20200318073756/https://www.percona.com/blog/2016/05/03/best-practices-for-configuring-optimal-mysql-memory-usage/
+innodb_flush_method=O_DIRECT
+{% endif %}
