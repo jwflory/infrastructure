@@ -20,4 +20,4 @@ znc_conf:
     ipv4: true
     ipv6: true
     ssl: true
-  version: 1.7.2
+  version: 1.7.5
