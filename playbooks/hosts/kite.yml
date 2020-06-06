@@ -1,0 +1,17 @@
+---
+- name: synchronize kite
+  hosts: kite.jwf.io
+  become: yes
+
+  vars:
+    target_group: jwf
+    target_user: jwf
+    target_user_name: Justin W. Flory
+    user_home_dir: /home/jwf
+
+  roles:
+    - { role: system/selinux, tags: ['selinux', 'system'] }
+    - { role: firewalld, tags: ['firewalld', 'system'] }
+    - { role: sshd, tags: ['sshd', 'system'] }
+    - { role: sites/kite.jwf.io, tags: ['kite', 'sites'] }
+    - { role: jwflory.znc, tags: ['znc', 'irc'] }
