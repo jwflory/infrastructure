@@ -1,0 +1,33 @@
+---
+- name: decommission a ZNC host and remove all user data
+  hosts: horizon.jwf.io
+  become: yes
+
+  tasks:
+    - name: stop/disable znc systemd service
+      service:
+        name: znc
+        state: stopped
+        enabled: no
+
+    - name: remove znc package
+      package:
+        name: znc
+        state: absent
+
+    - name: remove all leftover files from ZNC installation
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/cron.weekly/renew_letsencrypt.cron
+        - /etc/letsencrypt/renewal-hooks/deploy/znc-renew-letsencrypt.sh
+        - /etc/nginx/conf.d/znc-nginx.conf
+        - /var/lib/znc/
+
+    - name: remove firewall rule for ZNC port
+      firewalld:
+        port: "6697/tcp"
+        state: disabled
+        immediate: yes
+        permanent: yes
