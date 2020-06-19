@@ -31,6 +31,19 @@
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version'] == "8"
 
+- name: Fedora - install PHP 7.4
+  dnf:
+    state: present
+    name:
+      - php
+      - php-bcmath
+      - php-dba
+      - php-gd
+      - php-mysqlnd
+      - php-pecl-imagick
+  when:
+    - ansible_facts['distribution'] == "Fedora"
+
 - name: php - push php.ini
   copy:
     src: php.ini

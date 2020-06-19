@@ -12,6 +12,9 @@ galaxy_info:
       versions:
         - 8
         - 7
+    - name: Fedora
+      versions:
+        - 32
 
   galaxy_tags:
     - linux
