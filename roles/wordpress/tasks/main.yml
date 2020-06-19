@@ -1,0 +1,90 @@
+---
+# CAVEAT: This role requires LetsEncrypt SSL certs and PHP-FPM to already be in place.
+# For future reference: https://certbot-dns-cloudflare.readthedocs.io/en/latest/
+
+- name: import Vault-encrypted variables
+  include_vars: vault.yml
+
+- name: install WordPress dependencies
+  package:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - php-intl
+    - php-pecl-zip
+    - python3-PyMySQL
+  when: ansible_facts['distribution'] == "Fedora"
+
+- name: nginx - create server block root directory /var/www/{{ site_fqdn }}/
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/"
+    mode: 0755
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: nginx - create html directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/html/"
+    mode: 0775
+    group: www-admin
+    owner: php-fpm
+    seuser: system_u
+    setype: httpd_sys_rw_content_t
+
+- name: nginx - create logs directory
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/logs/"
+    mode: 0755
+    group: nginx
+    owner: nginx
+    seuser: system_u
+    setype: httpd_log_t
+
+- name: www - copy favicon.ico
+  copy:
+    src: "favicon.ico"
+    dest: "/var/www/{{ site_fqdn }}/html/favicon.ico"
+    mode: 0664
+    group: www-admin
+    owner: www-admin
+    seuser: system_u
+    setype: httpd_sys_content_t
+
+- name: www - recursively set html directory permissions
+  file:
+    state: directory
+    path: "/var/www/{{ site_fqdn }}/html/"
+    recurse: yes
+    mode: g+rw
+    group: www-admin
+
+- name: nginx - push wordpress.conf
+  template:
+    src: wordpress.conf
+    dest: "/etc/nginx/conf.d/wordpress.conf"
+    mode: 0644
+  notify:
+    - restart php-fpm
+    - restart nginx
+
+- name: mysql - create database if does not exist
+  mysql_db:
+    name: wordpress_blog
+    state: present
+    login_user: root
+    login_host: localhost
+    login_password: "{{ db.root_password }}"
+
+- name: mysql - create wordpress user and set password
+  mysql_user:
+    name: wordpress_blog
+    host: localhost
+    state: present
+    priv: "wordpress_blog.*:ALL"
+    password: "{{ db.wordpress_password  }}"
+    login_user: root
+    login_host: localhost
+    login_password: "{{ db.root_password }}"
