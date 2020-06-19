@@ -1,0 +1,3 @@
+---
+db:
+  root_password: "{{ vault_db.root_password }}"
