@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  role_name: sites/lorge.jwf.io
+  author: Justin W. Flory
+  description: Set up the lorge.jwf.io default site on an NGINX server
+  license: BSD-3-Clause
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Fedora
+      versions:
+        - 32
+
+  galaxy_tags:
+    - linux
+    - fedora
+    - server
+    - nginx
+
+dependencies:
+  - role: nginx

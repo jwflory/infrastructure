@@ -2,9 +2,10 @@ fedorapeople.org    ansible_ssh_user=jflory7
 horizon.jwf.io      ansible_ssh_user=jflory
 jubilee.jwf.io      ansible_ssh_user=jwf
 kite.jwf.io         ansible_ssh_user=jwf
+lorge.jwf.io        ansible_ssh_user=jwf
 
 [wordpress]
-horizon.jwf.io      ansible_ssh_user=jflory
+lorge.jwf.io        ansible_ssh_user=jwf
 
 [xenforo]
 jubilee.jwf.io      ansible_ssh_user=jwf
