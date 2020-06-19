@@ -3,6 +3,7 @@
   package:
     state: latest
     name: epel-release
+  when: ansible_facts['distribution'] == "CentOS"
 
 - name: enable CentOS PowerTools repository (for certbot)
   lineinfile:
