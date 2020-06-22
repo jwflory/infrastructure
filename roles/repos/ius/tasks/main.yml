@@ -2,7 +2,7 @@
 - name: add/upgrade IUS repository
   package:
     state: latest
-    name: https://centos7.iuscommunity.org/ius-release.rpm
+    name: https://repo.ius.io/ius-release-el7.rpm
 
 - name: install base IUS packages
   package:
