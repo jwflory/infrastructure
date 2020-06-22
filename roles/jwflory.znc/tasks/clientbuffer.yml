@@ -8,7 +8,7 @@
   git:
     repo: https://github.com/CyberShadow/znc-clientbuffer.git
     dest: /tmp/znc-clientbuffer
-    version: cc5e0217dd35e4404ac74b2586aecf95d45c715e
+    version: v1.0.48
 
 - name: compile znc-clientbuffer module
   command: /usr/bin/znc-buildmod clientbuffer.cpp
