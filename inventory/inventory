@@ -3,6 +3,7 @@ horizon.jwf.io      ansible_ssh_user=jflory
 jubilee.jwf.io      ansible_ssh_user=jwf
 kite.jwf.io         ansible_ssh_user=jwf
 lorge.jwf.io        ansible_ssh_user=jwf
+midnight.jwf.io     ansible_ssh_user=jwf
 
 [wordpress]
 lorge.jwf.io        ansible_ssh_user=jwf
