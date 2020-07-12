@@ -1,6 +1,6 @@
 ---
 - name: decommission a ZNC host and remove all user data
-  hosts: horizon.jwf.io
+  hosts: znc
   become: yes
 
   tasks:

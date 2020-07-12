@@ -13,6 +13,6 @@
     - { role: system/selinux, tags: ['selinux', 'system'] }
     - { role: firewalld, tags: ['firewalld', 'system'] }
     - { role: sshd, tags: ['sshd', 'system'] }
-    - { role: sites/midnight.jwf.io, tags: ['horizon', 'sites'] }
+    - { role: sites/midnight.jwf.io, tags: ['midnight', 'sites'] }
     - { role: sites/i.jwf.io, tags: ['screenshot', 'sites'] }
     - { role: sites/mirror.jwf.io, tags: ['mirror', 'sites'] }

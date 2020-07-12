@@ -1,0 +1,9 @@
+= XenForo
+
+Logbook-style documentation for running and maintaining a XenForo v1.x.x site.
+
+
+== Permissions
+
+* `sitemaps/` and `temp/` must have 0777 permissions…
+** `temp/` is for the image proxy

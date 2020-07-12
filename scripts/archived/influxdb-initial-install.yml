@@ -2,7 +2,7 @@
 # NOTE: Admin user must already be set up for this playbook to work.
 
 - name: set up InfluxDB default database and users for the first time
-  hosts: horizon
+  hosts: influxdb
   become: yes
 
   handlers:

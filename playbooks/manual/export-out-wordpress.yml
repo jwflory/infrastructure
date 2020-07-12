@@ -1,6 +1,6 @@
 ---
 - name: export all data for a single WordPress installation
-  hosts: horizon.jwf.io
+  hosts: lorge.jwf.io
   become: yes
 
   vars:

@@ -1,19 +1,9 @@
-= Logbook: horizon.jwf.io
+= WordPress
 
-[link=https://creativecommons.org/licenses/by-sa/4.0/]
-image::https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg[License: CC BY-SA 4.0]
-
-Running logbook of documentation notes for Horizon.
+Logbook-style documentation about running and maintaining a WordPress site.
 
 
-== Firewall
-
-_See https://github.com/jwflory/infrastructure/blob/master/roles/firewalld/tasks/main.yml[jwflory/infrastructure firewalld Ansible role]._
-
-
-== WordPress
-
-=== Updating from admin dashboard does not work: "failed to create directory"
+== Updating from admin dashboard does not work: "failed to create directory"
 
 The web server cannot read or write to files in the web directory.
 Make sure the `php-fpm` user is a member of the `www-admin` group and that the folder is group-writable.
@@ -24,7 +14,8 @@ But in my case, `nginx` is spinning off `php-fpm` processes to run PHP web appli
 This user is trying to read and write from files instead of the web server.
 Look closer at https://github.com/jwflory/infrastructure[jwflory/infrastructure] for additional context.
 
-=== wp_cli cannot upgrade WordPress because another update is in progress
+
+== wp_cli cannot upgrade WordPress because another update is in progress
 
 `wp option get core_updater.lock`::
 Check if WordPress is holding a version lock.
@@ -35,10 +26,3 @@ Break a version lock on WordPress.
 Verify an update is NOT in progress before deleting (check processes, visit admin panel).
 
 https://wordpress.stackexchange.com/questions/224989/get-rid-of-another-update-is-currently-in-progress[Reference]
-
-
-== XenForo
-
-* `sitemaps/` and `temp/` must have 0777 permissions…
-** `temp/` is for the image proxy
-
