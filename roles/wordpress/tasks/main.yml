@@ -13,6 +13,7 @@
     - php-intl
     - php-pecl-zip
     - python3-PyMySQL
+    - wp-cli
   when: ansible_facts['distribution'] == "Fedora"
 
 - name: nginx - create server block root directory /var/www/{{ site_fqdn }}/
