@@ -1,6 +1,0 @@
----
-- import_playbook: hosts/fedorapeople.org
-- import_playbook: hosts/jubilee.yml
-- import_playbook: hosts/kite.yml
-- import_playbook: hosts/lorge.yml
-- import_playbook: hosts/midnight.yml

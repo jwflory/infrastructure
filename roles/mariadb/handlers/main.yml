@@ -1,5 +1,0 @@
----
-- name: restart mariadb.service
-  service:
-    name: mariadb.service
-    state: restarted

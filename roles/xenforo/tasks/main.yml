@@ -1,4 +1,0 @@
----
-- include_tasks: permissions.yml
-- include_tasks: nginx.yml
-- include_tasks: files.yml

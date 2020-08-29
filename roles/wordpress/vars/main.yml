@@ -1,4 +1,0 @@
----
-db:
-  root_password: "{{ vault_db.root_password }}"
-  wordpress_password: "{{ vault_db.wordpress_password }}"

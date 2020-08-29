@@ -1,6 +1,0 @@
----
-- include_tasks: install.yml
-- include_tasks: configure.yml
-- include_tasks: permissions.yml
-- include_tasks: files.yml
-- include_tasks: services.yml
